@@ -1,8 +1,8 @@
 ember-a11y-refocus
 ==============================================================================
 
-[Short description of the addon.]
-
+This adds a message to the page to let the screen reader user know that the route has changed and regular page navigation can resume.
+It is similar to [https://github.com/ember-a11y/a11y-announcer](https://github.com/ember-a11y/a11y-announcer) but does not use aria-live.
 
 Compatibility
 ------------------------------------------------------------------------------
@@ -10,26 +10,22 @@ Compatibility
 * Ember.js v2.18 or above
 * Ember CLI v2.13 or above
 
-
 Installation
 ------------------------------------------------------------------------------
 
-```
+```bash
 ember install ember-a11y-refocus
 ```
-
 
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
-
+Insert `{{navigation-narrator}}` into your application.hbs file, preferably inside of a `<header>` element.
 
 Contributing
 ------------------------------------------------------------------------------
 
-See the [Contributing](CONTRIBUTING.md) guide for details.
-
+Contributions are welcome.
 
 License
 ------------------------------------------------------------------------------
