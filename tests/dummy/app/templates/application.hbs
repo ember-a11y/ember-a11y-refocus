@@ -1,3 +1,12 @@
-<h2 id="title">Welcome to Ember</h2>
+<header>
+  {{navigation-narrator}}
+  <nav>
+    {{link-to "Index" "index"}}
+    {{link-to "Alpha" "alpha"}}
+    {{link-to "Bravo" "bravo"}}
+  </nav>
+</header>
 
-{{outlet}}
+<main>
+  {{outlet}}
+</main>

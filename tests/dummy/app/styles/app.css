@@ -1,0 +1,20 @@
+#ember-a11y-refocus-nav-message:active,
+#ember-a11y-refocus-nav-message:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/*
+this stuff isn't important but I can't keep looking at these browser defaults */
+*, *:after {
+  box-sizing: border-box;
+}
+body {
+  font-size: 1em;
+  line-height: 1.2;
+  font-family: 'Roboto', sans-serif;
+}
