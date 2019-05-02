@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "a11y"
   ],
-  "repository": "",
+  "repository": "https://github.com/MelSumner/ember-a11y-refocus",
   "license": "MIT",
-  "author": "",
+  "author": "Melanie Sumner <melaniersumner@gmail.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
