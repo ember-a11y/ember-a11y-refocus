@@ -1,4 +1,9 @@
 ember-a11y-refocus
+
+[![Latest NPM release][npm-badge]][npm-badge-url]
+
+[npm-badge]: https://img.shields.io/npm/v/ember-a11y-refocus.svg
+[npm-badge-url]: https://www.npmjs.com/package/ember-a11y-refocus
 ==============================================================================
 
 This adds a message to the page to let the screen reader user know that the route has changed and regular page navigation can resume.
