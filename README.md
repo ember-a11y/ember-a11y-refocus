@@ -1,4 +1,4 @@
-ember-a11y-refocus
+# ember-a11y-refocus
 
 [![Latest NPM release][npm-badge]][npm-badge-url]
 
