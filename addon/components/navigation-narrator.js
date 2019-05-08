@@ -7,6 +7,7 @@ export default Component.extend({
   layout,
   tagName: '',
   router: service(),
+  isFocusable: true,
 
   init() {
     this._super();
