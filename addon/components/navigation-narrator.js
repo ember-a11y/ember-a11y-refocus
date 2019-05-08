@@ -11,10 +11,7 @@ export default Component.extend({
   init() {
     this._super();
 
-    this.set('fullUrl', window.location.href);
-
     this.router.on('routeDidChange', () => {
-      this.set('fullUrl', window.location.href);
       // we need to put this inside of something async so we can make sure it really happens **after everything else**
       schedule('afterRender', this, function() {
         document.body.querySelector('#ember-a11y-refocus-nav-message').focus();
