@@ -6,21 +6,9 @@ import hbs from 'htmlbars-inline-precompile';
 module('Integration | Component | navigation-narrator', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
+  test('navigation message renders', async function(assert) {
     await render(hbs`{{navigation-narrator}}`);
+    assert.equal(this.element.textContent.trim(), 'The page navigation is complete. You may now navigate the page content as you wish.');
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#navigation-narrator}}
-        template block text
-      {{/navigation-narrator}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

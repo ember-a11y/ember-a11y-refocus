@@ -7,7 +7,8 @@
 <p>Since <code>pushState</code> does nothing to inform the browser - and, by extent, the screen reader- that new content is present, the screen-reader user has no way of knowing that new content exists, or that navigation to a new page was successful. Additionally, focus remains where it was, instead of getting reset in a predictable fashion.</p>
 
 <h2>Solutions?</h2>
-<p>These two issues (recognition of new content, resetting of focus for navigation purposes) have been treated a few ways in single-page applications:
+<p>
+  These two issues (recognition of new content, resetting of focus for navigation purposes) have been treated a few ways in single-page applications:
   <ol>
     <li>completely ignored</li>
     <li>issue filed with screen readers themselves</li>
@@ -20,14 +21,15 @@
 <p>The biggest issue is that this problem is mostly ignored and not resolved. This is why each framework should provide a recommended method for resolving this issue- or ideally, bake a solution into the framework code itself, so that developers do not have to even think about it.</p>
 
 <h2>What this addon does</h2>
-<p>The ember-a11y-refocus addon attempts to provide a sensible resolution for all involved:
+<p>
+  The ember-a11y-refocus addon attempts to provide a sensible resolution for all involved:
   <ol>
     <li>the performance gains from `pushState` remain in place</li>
     <li>users with assistive technology are informed that a page transition has occurred</li>
     <li>the focus is reset to the message itself, which also resets the focus of the page (as is desired for the screen-reader user)</li>
   </ol> 
 </p>
-<p>To try it out, navigate through some of the items in the navbar while browsing with your screen reader of choice.</p>
+<p>To try it out, use your keyboard to navigate through some of the items in the navbar while browsing with your screen reader of choice.</p>
 
 <h2>How to give feedback</h2>
 <p>What do you think of this approach? I really would like to hear from you. You can <a href="mailto:melaniersumner@gmail.com">email me</a> or send me <a href="https://twitter.com/melaniersumner">a Tweet!</a>.</p>
