@@ -1,7 +1,7 @@
 {
   "name": "ember-a11y-refocus",
   "version": "0.4.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "sccessibility addon to announce route change and reset focus",
   "keywords": [
     "ember-addon",
     "a11y"
