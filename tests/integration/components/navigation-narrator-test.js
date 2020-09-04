@@ -8,7 +8,9 @@ module('Integration | Component | navigation-narrator', function(hooks) {
 
   test('navigation message renders', async function(assert) {
     await render(hbs`{{navigation-narrator}}`);
-    assert.equal(this.element.textContent.trim(), 'The page navigation is complete. You may now navigate the page content as you wish.');
+    assert.dom(this.element).hasText(
+      'The page navigation is complete. You may now navigate the page content as you wish.'
+    );
 
   });
 });

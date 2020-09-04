@@ -3,14 +3,16 @@ import layout from '../templates/components/navigation-narrator';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 
-export default Component.extend({
-  layout,
-  tagName: '',
-  router: service(),
-  isFocusable: true,
+export default class NavigationNarrator extends Component {
+  layout = layout;
+  tagName = '';
 
-  init() {
-    this._super();
+  @service router;
+
+  isFocusable = true;
+
+  constructor() {
+    super(...arguments);
 
     this.router.on('routeDidChange', () => {
       // we need to put this inside of something async so we can make sure it really happens **after everything else**
@@ -19,4 +21,4 @@ export default Component.extend({
       });
     })
   }
-});
+}
