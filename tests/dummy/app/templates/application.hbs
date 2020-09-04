@@ -1,9 +1,9 @@
 <header>
-  {{navigation-narrator}}
+  <NavigationNarrator />
   <nav>
-    {{link-to "Home" "index"}}
-    {{link-to "Alpha" "alpha" class="alpha"}}
-    {{link-to "Bravo" "bravo"}}
+    <LinkTo @route="index">Home</LinkTo>
+    <LinkTo @route="alpha" class="alpha">Alpha</LinkTo>
+    <LinkTo @route="bravo">Bravo</LinkTo>
   </nav>
 </header>
 
