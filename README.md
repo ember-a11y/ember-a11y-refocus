@@ -46,7 +46,7 @@ ember install ember-a11y-refocus
 Usage
 ------------------------------------------------------------------------------
 
-Insert `{{navigation-narrator}}` into your application.hbs file, preferably inside of a `<header>` element.
+Insert `<NavigationNarrator/>` into your application.hbs file, preferably inside of a `<header>` element.
 
 Contributing
 ------------------------------------------------------------------------------
