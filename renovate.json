@@ -10,7 +10,7 @@
     {
       "matchPackagePatterns": ["^ember", "^glimmer", "^qunit-dom"],
       "rangeStrategy": "replace",
-      "groupName": "ember packages"
+      "groupName": "ember packag3s"
     }
   ]
 }
