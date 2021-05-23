@@ -1,0 +1,16 @@
+{
+  "extends": ["config:base", ":preserveSemverRanges", "schedule:nonOfficeHours"],
+  "prConcurrentLimit": 5,
+  "packageRules": [
+    {
+      "packagePatterns": ["eslint"],
+      "groupName": "eslint",
+      "rangeStrategy": "replace"
+    },
+    {
+      "matchPackagePatterns": ["^ember", "^glimmer", "^qunit-dom"],
+      "rangeStrategy": "replace",
+      "groupName": "ember packages"
+    }
+  ]
+}
