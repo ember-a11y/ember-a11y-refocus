@@ -1,14 +1,10 @@
-import Component from '@ember/component';
-import layout from '../templates/components/navigation-narrator';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
-export default class NavigationNarrator extends Component {
-  layout = layout;
-  tagName = '';
-
+export default class NavigationNarratorComponent extends Component {
   @service router;
 
   @tracked isSkipLinkFocused = false;
@@ -24,12 +20,11 @@ export default class NavigationNarrator extends Component {
   constructor() {
     super(...arguments);
 
-    this.router.on('routeDidChange', () => {
-      // we need to put this inside of something async so we can make sure it really happens **after everything else**
-      schedule('afterRender', this, function() {
+    this.router.on('didTransition', () => {
+      schedule('afterRender', this, function () {
         document.body.querySelector('#ember-a11y-refocus-nav-message').focus();
       });
-    })
+    });
   }
 
   @action
