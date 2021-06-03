@@ -2,12 +2,22 @@ import Component from '@ember/component';
 import layout from '../templates/components/navigation-narrator';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class NavigationNarrator extends Component {
   layout = layout;
   tagName = '';
 
   @service router;
+
+  @tracked isSkipLinkFocused = false;
+
+  skipLink = true;
+
+  skipTo = '#main' || this.args.skipTo;
+
+  skipText = 'Skip to main content' || this.args.skipText;
 
   isFocusable = true;
 
@@ -20,5 +30,10 @@ export default class NavigationNarrator extends Component {
         document.body.querySelector('#ember-a11y-refocus-nav-message').focus();
       });
     })
+  }
+
+  @action
+  handleSkipLinkFocus() {
+    this.isSkipLinkFocused = !this.isSkipLinkFocused;
   }
 }
