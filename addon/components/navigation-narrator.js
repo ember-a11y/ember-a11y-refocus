@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
-import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class NavigationNarratorComponent extends Component {
@@ -14,6 +14,10 @@ export default class NavigationNarratorComponent extends Component {
   skipTo = '#main' || this.args.skipTo;
 
   skipText = 'Skip to main content' || this.args.skipText;
+
+  navigationText =
+    'The page navigation is complete. You may now navigate the page content as you wish.' ||
+    this.args.navigationText;
 
   isFocusable = true;
 

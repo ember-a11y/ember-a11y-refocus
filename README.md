@@ -7,9 +7,10 @@
 
 ## What This Addon Does
 
-This addon does two things:
+This addon does three things:
 1. it adds a message to the page to let the screen reader user know that the route has changed and regular page navigation can resume (it is similar to [https://github.com/ember-a11y/a11y-announcer](https://github.com/ember-a11y/a11y-announcer) but does not use `aria-live`).
 2. It moves the focus to that message for the screen reader user, effectively resetting focus in Ember apps (similar to how a native web page/site works).
+3. It provides a bypass mechanism so the user can skip to the page's primary content (see https://www.w3.org/TR/WCAG20-TECHS/G1.html). You can opt out of this if you want (see the `Options` section for available options).
 
 ## Why This Addon is Needed
 
@@ -32,9 +33,9 @@ Since this will run before other content, focus can be programmatically moved by
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.16 or above
-* Ember CLI v2.13 or above
-* Node.js v10 or above
+* Ember.js v3.26 or above
+* Ember CLI v3.26 or above
+* Node.js v12 or above
 
 Installation
 ------------------------------------------------------------------------------
@@ -47,6 +48,13 @@ Usage
 ------------------------------------------------------------------------------
 
 Insert `<NavigationNarrator/>` into your application.hbs file, preferably inside of a `<header>` element.
+
+Options
+------------------------------------------------------------------------------
+`skipLink` - pass `{{false}}` if you do not want to implement a skip link.
+`skipTo` - pass a specific element ID that should receive focus on skip.
+`skipText` - customize the text passed in the skip link. Defaults to "Skip to main content".
+`navigationText` - customize the text passed as the navigation message. Defaults to "The page navigation is complete. You may now navigate the page content as you wish."
 
 Contributing
 ------------------------------------------------------------------------------
