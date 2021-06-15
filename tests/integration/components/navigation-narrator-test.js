@@ -47,7 +47,7 @@ module('Integration | Component | navigation-narrator', function (hooks) {
         .hasAttribute('href', '#newid');
     });
 
-    test('it renders the text passed to `skipText`', async function (assert) {
+    test('it renders custom text passed to `skipText`', async function (assert) {
       await render(hbs`<NavigationNarrator @skipText="Skip to content" />`);
 
       assert.dom('.ember-a11y-refocus-skip-link').hasText('Skip to content');
