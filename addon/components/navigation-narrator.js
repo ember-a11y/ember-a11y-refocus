@@ -9,23 +9,33 @@ export default class NavigationNarratorComponent extends Component {
 
   @tracked isSkipLinkFocused = false;
 
-  constructor(owner, args) {
-    super(owner, args);
+  get skipTo() {
+    return this.args.skipTo ?? '#main';
+  }
+
+  get skipText() {
+    return this.args.skipText ?? 'Skip to main content';
+  }
+
+  // set the navigation message properties
+  get navigationText() {
+    return (
+      this.args.navigationText ??
+      'The page navigation is complete. You may now navigate the page content as you wish.'
+    );
+  }
+
+  constructor() {
+    super(...arguments);
 
     // set the skip link properties
     this.skipLink = true;
-    this.skipTo = '#main' || this.args.skipTo;
-    this.skipText = 'Skip to main content' || this.args.skipText;
-
-    // set the navigation message properties
-    this.navigationText =
-      'The page navigation is complete. You may now navigate the page content as you wish.' ||
-      this.args.navigationText;
     this.isFocusable = true;
 
     // focus on the navigation message after render
     this.router.on('didTransition', () => {
       schedule('afterRender', this, function () {
+        console.log(`navigation message is ${this.navigationText}.`);
         document.body.querySelector('#ember-a11y-refocus-nav-message').focus();
       });
     });
