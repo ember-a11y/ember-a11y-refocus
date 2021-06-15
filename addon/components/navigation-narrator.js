@@ -9,6 +9,10 @@ export default class NavigationNarratorComponent extends Component {
 
   @tracked isSkipLinkFocused = false;
 
+  get skipLink() {
+    return this.args.skipLink ?? true;
+  }
+
   get skipTo() {
     return this.args.skipTo ?? '#main';
   }
@@ -17,7 +21,6 @@ export default class NavigationNarratorComponent extends Component {
     return this.args.skipText ?? 'Skip to main content';
   }
 
-  // set the navigation message properties
   get navigationText() {
     return (
       this.args.navigationText ??
@@ -29,7 +32,6 @@ export default class NavigationNarratorComponent extends Component {
     super(...arguments);
 
     // set the skip link properties
-    this.skipLink = true;
     this.isFocusable = true;
 
     // focus on the navigation message after render
