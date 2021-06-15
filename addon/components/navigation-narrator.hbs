@@ -1,0 +1,18 @@
+<div
+  tabindex="-1"
+  class="ember-sr-only {{if this.isFocusable 'ember-sr-only-focusable'}}"
+  id="ember-a11y-refocus-nav-message"
+>
+  {{this.navigationText}}
+</div>
+{{#if this.skipLink}}
+  <a
+    href={{this.skipTo}}
+    class="ember-a11y-refocus-skip-link {{if this.isSkipLinkFocused 'active'}}"
+    {{on 'focus' this.handleSkipLinkFocus}}
+    {{on 'blur' this.handleSkipLinkFocus}}
+    id="ember-a11y-refocus-skip-link"
+  >
+    {{this.skipText}}
+  </a>
+{{/if}}

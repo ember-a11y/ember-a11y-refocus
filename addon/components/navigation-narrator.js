@@ -1,35 +1,46 @@
-import Component from '@ember/component';
-import layout from '../templates/components/navigation-narrator';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
-import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
-export default class NavigationNarrator extends Component {
-  layout = layout;
-  tagName = '';
-
+export default class NavigationNarratorComponent extends Component {
   @service router;
 
   @tracked isSkipLinkFocused = false;
 
-  skipLink = true;
+  get skipLink() {
+    return this.args.skipLink ?? true;
+  }
 
-  skipTo = '#main' || this.args.skipTo;
+  get skipTo() {
+    return this.args.skipTo ?? '#main';
+  }
 
-  skipText = 'Skip to main content' || this.args.skipText;
+  get skipText() {
+    return this.args.skipText ?? 'Skip to main content';
+  }
 
-  isFocusable = true;
+  get navigationText() {
+    return (
+      this.args.navigationText ??
+      'The page navigation is complete. You may now navigate the page content as you wish.'
+    );
+  }
 
   constructor() {
     super(...arguments);
 
-    this.router.on('routeDidChange', () => {
-      // we need to put this inside of something async so we can make sure it really happens **after everything else**
-      schedule('afterRender', this, function() {
+    // set the skip link properties
+    this.isFocusable = true;
+
+    // focus on the navigation message after render
+    this.router.on('didTransition', () => {
+      schedule('afterRender', this, function () {
+        console.log(`navigation message is ${this.navigationText}.`);
         document.body.querySelector('#ember-a11y-refocus-nav-message').focus();
       });
-    })
+    });
   }
 
   @action
