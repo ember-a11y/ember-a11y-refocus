@@ -1,6 +1,6 @@
 {
   "name": "ember-a11y-refocus",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "accessibility addon to announce route change, reset focus and provide a skip link",
   "keywords": [
     "ember-addon",
