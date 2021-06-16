@@ -1,12 +1,12 @@
 {
   "name": "ember-a11y-refocus",
   "version": "1.0.0",
-  "description": "accessibility addon to announce route change and reset focus",
+  "description": "accessibility addon to announce route change, reset focus and provide a skip link",
   "keywords": [
     "ember-addon",
     "a11y"
   ],
-  "repository": "https://github.com/MelSumner/ember-a11y-refocus",
+  "repository": "https://github.com/ember-a11y/ember-a11y-refocus",
   "license": "MIT",
   "author": "Melanie Sumner <melaniersumner@gmail.com>",
   "directories": {
@@ -28,8 +28,7 @@
   },
   "dependencies": {
     "ember-cli-babel": "^7.26.3",
-    "ember-cli-htmlbars": "^5.7.1",
-    "ember-cli-update": "^1.0.0"
+    "ember-cli-htmlbars": "^5.7.1"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
@@ -95,5 +94,8 @@
       "release": true,
       "tokenRef": "GITHUB_AUTH"
     }
+  },
+  "volta": {
+    "node": "14.17.1"
   }
 }
