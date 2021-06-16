@@ -51,10 +51,11 @@ Insert `<NavigationNarrator/>` into your application.hbs file, preferably inside
 
 Options
 ------------------------------------------------------------------------------
-`skipLink` - pass `{{false}}` if you do not want to implement a skip link.
-`skipTo` - pass a specific element ID that should receive focus on skip.
-`skipText` - customize the text passed in the skip link. Defaults to "Skip to main content".
-`navigationText` - customize the text passed as the navigation message. Defaults to "The page navigation is complete. You may now navigate the page content as you wish."
+
+* `skipLink` - pass `{{false}}` if you do not want to implement a skip link.
+* `skipTo` - pass a specific element ID that should receive focus on skip.
+* `skipText` - customize the text passed in the skip link. Defaults to "Skip to main content".
+* `navigationText` - customize the text passed as the navigation message. Defaults to "The page navigation is complete. You may now navigate the page content as you wish."
 
 Contributing
 ------------------------------------------------------------------------------
