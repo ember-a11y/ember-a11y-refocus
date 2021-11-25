@@ -8,6 +8,7 @@ export default class NavigationNarratorComponent extends Component {
   @service router;
 
   @tracked isSkipLinkFocused = false;
+  @tracked isFocusable = true;
 
   get skipLink() {
     return this.args.skipLink ?? true;
@@ -30,9 +31,6 @@ export default class NavigationNarratorComponent extends Component {
 
   constructor() {
     super(...arguments);
-
-    // set the skip link properties
-    this.isFocusable = true;
 
     // focus on the navigation message after render
     this.router.on('didTransition', () => {
