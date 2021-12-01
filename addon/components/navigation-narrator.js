@@ -37,7 +37,6 @@ export default class NavigationNarratorComponent extends Component {
     // focus on the navigation message after render
     this.router.on('routeDidChange', () => {
       schedule('afterRender', this, function () {
-        console.log(`navigation message is ${this.navigationText}.`);
         document.body.querySelector('#ember-a11y-refocus-nav-message').focus();
       });
     });
