@@ -35,7 +35,7 @@ export default class NavigationNarratorComponent extends Component {
     this.isFocusable = true;
 
     // focus on the navigation message after render
-    this.router.on('didTransition', () => {
+    this.router.on('routeDidChange', () => {
       schedule('afterRender', this, function () {
         console.log(`navigation message is ${this.navigationText}.`);
         document.body.querySelector('#ember-a11y-refocus-nav-message').focus();
