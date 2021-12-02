@@ -31,9 +31,6 @@ export default class NavigationNarratorComponent extends Component {
   constructor() {
     super(...arguments);
 
-    // set the skip link properties
-    this.isFocusable = true;
-
     // focus on the navigation message after render
     this.router.on('routeDidChange', () => {
       schedule('afterRender', this, function () {
