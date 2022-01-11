@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
     tags:
       - "*"
   pull_request: {}
@@ -37,14 +37,11 @@ jobs:
     strategy:
       matrix:
         ember-try-scenario:
-          - ember-lts-3.16
-          - ember-lts-3.20
+          - ember-lts-3.24
+          - ember-lts-3.28
           - ember-release
           - ember-beta
           - ember-canary
-          - 'ember-default-with-jquery'
-          - 'ember-classic'
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
