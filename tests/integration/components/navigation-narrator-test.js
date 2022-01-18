@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, focus, blur } from '@ember/test-helpers';
+import { render, focus, blur, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | navigation-narrator', function (hooks) {
@@ -65,6 +65,20 @@ module('Integration | Component | navigation-narrator', function (hooks) {
       await blur('.ember-a11y-refocus-skip-link');
 
       assert.dom('.ember-a11y-refocus-skip-link').doesNotHaveClass('active');
+    });
+  });
+
+  module('on routeDidChange', function () {
+    test('it takes focus', async function (assert) {
+      let router = this.owner.lookup('service:router');
+
+      await render(hbs`<NavigationNarrator />`);
+
+      router.trigger('routeDidChange');
+
+      await settled();
+
+      assert.dom('#ember-a11y-refocus-nav-message').isFocused();
     });
   });
 });
