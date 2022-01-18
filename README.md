@@ -49,7 +49,35 @@ Usage
 
 Insert `<NavigationNarrator/>` into your application.hbs file, preferably inside of a `<header>` element.
 
-Options
+### Customizing the definition of a route change
+
+This addon provides support for custom definitions of which route changes should trigger refocusing behavior.
+To use this functionality, pass `routeChangeValidator` when you invoke the component, and add your custom action in the appropriate controller (likely the application controller).
+
+So when you add the component to your application.hbs file:
+
+```hbs
+<NavigationNarrator @routeChangeValidator={{this.myCustomValidator}} />
+```
+
+This is what the controller could look like:
+
+```js
+import Controller from '@ember/controller';
+
+export default class ApplicationController extends Controller {
+  myCustomValidator(transition) {
+    // Custom logic goes here...
+  }
+}
+```
+
+The validator function:
+
+- Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
+- Should return `true` if refocusing should occur, otherwise `false`
+
+Additional Options
 ------------------------------------------------------------------------------
 
 * `skipLink` - pass `{{false}}` if you do not want to implement a skip link.

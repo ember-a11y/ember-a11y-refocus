@@ -2,6 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, focus, blur, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+import { MockTransition } from '../../helpers/mocks';
 
 module('Integration | Component | navigation-narrator', function (hooks) {
   setupRenderingTest(hooks);
@@ -74,11 +75,27 @@ module('Integration | Component | navigation-narrator', function (hooks) {
 
       await render(hbs`<NavigationNarrator />`);
 
-      router.trigger('routeDidChange');
+      router.trigger('routeDidChange', new MockTransition());
 
       await settled();
 
       assert.dom('#ember-a11y-refocus-nav-message').isFocused();
+    });
+
+    test('it accepts custom change-detection logic', async function (assert) {
+      let router = this.owner.lookup('service:router');
+
+      this.set('routeChangeValidator', () => false);
+
+      await render(
+        hbs`<NavigationNarrator @routeChangeValidator={{this.routeChangeValidator}} />`
+      );
+
+      router.trigger('routeDidChange', new MockTransition());
+
+      await settled();
+
+      assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
     });
   });
 });
