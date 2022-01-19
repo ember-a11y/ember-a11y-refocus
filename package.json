@@ -35,7 +35,7 @@
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.6.0",
-    "@embroider/test-setup": "0.50.1",
+    "@embroider/test-setup": "1.0.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
     "babel-eslint": "^10.1.0",
@@ -70,9 +70,9 @@
     "release-it": "^14.2.1",
     "release-it-lerna-changelog": "^4.0.0",
     "webpack": "^5.65.0",
-    "@embroider/core": "0.50.1",
-    "@embroider/webpack": "0.50.1",
-    "@embroider/compat": "0.50.1"
+    "@embroider/core": "1.0.0",
+    "@embroider/webpack": "1.0.0",
+    "@embroider/compat": "1.0.0"
   },
   "engines": {
     "node": "12.* || 14.* || >= 16"
