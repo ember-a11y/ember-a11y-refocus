@@ -77,6 +77,23 @@ The validator function:
 - Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
 - Should return `true` if refocusing should occur, otherwise `false`
 
+If you wish to extend the default behavior (rather than completely replacing it), you can import the default validator like so:
+
+```js
+ import Controller from '@ember/controller';
+ import { defaultValidator } from 'ember-a11y-refocus';
+
+ export default class ApplicationController extends Controller {
+   myCustomValidator(transition) {
+     if (transition.from.name === 'special') {
+        return false;
+     } else {
+        return defaultValidator(transition);
+     }
+   }
+ }
+ ```
+
 Additional Options
 ------------------------------------------------------------------------------
 

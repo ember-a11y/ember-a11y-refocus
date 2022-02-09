@@ -3,11 +3,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
-import { routeInfoEqual } from '../utils/route-utils';
-
-const DEFAULT_ROUTE_CHANGE_VALIDATOR = (transition) => {
-  return !routeInfoEqual(transition.from, transition.to);
-};
+import { defaultValidator } from 'ember-a11y-refocus';
 
 export default class NavigationNarratorComponent extends Component {
   @service router;
@@ -34,7 +30,7 @@ export default class NavigationNarratorComponent extends Component {
   }
 
   get routeChangeValidator() {
-    return this.args.routeChangeValidator ?? DEFAULT_ROUTE_CHANGE_VALIDATOR;
+    return this.args.routeChangeValidator ?? defaultValidator;
   }
 
   constructor() {
