@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, focus, blur, settled } from '@ember/test-helpers';
+import { render, clearRender, focus, blur, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { MockTransition } from '../../helpers/mocks';
 
@@ -80,6 +80,18 @@ module('Integration | Component | navigation-narrator', function (hooks) {
       await settled();
 
       assert.dom('#ember-a11y-refocus-nav-message').isFocused();
+    });
+
+    test('it does not error if element is removed before focus', async function (assert) {
+      assert.expect(0); // no assertions here, just making sure the test runs w/o erroring
+      let router = this.owner.lookup('service:router');
+
+      await render(hbs`<NavigationNarrator />`);
+      await clearRender();
+
+      router.trigger('routeDidChange', new MockTransition());
+
+      await settled();
     });
 
     test('it accepts custom change-detection logic', async function (assert) {
