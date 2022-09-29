@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { registerDestructor } from '@ember/destroyable';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
@@ -37,16 +38,23 @@ export default class NavigationNarratorComponent extends Component {
     super(...arguments);
 
     // focus on the navigation message after render
-    this.router.on('routeDidChange', (transition) => {
-      let shouldFocus = this.routeChangeValidator(transition);
+    this.router.on('routeDidChange', this.onRouteChange);
 
-      if (!shouldFocus) {
-        return;
-      }
+    registerDestructor(this, () => {
+      this.router.off('routeDidChange', this.onRouteChange);
+    });
+  }
 
-      schedule('afterRender', this, function () {
-        document.body.querySelector('#ember-a11y-refocus-nav-message').focus();
-      });
+  @action
+  onRouteChange(transition) {
+    let shouldFocus = this.routeChangeValidator(transition);
+
+    if (!shouldFocus) {
+      return;
+    }
+
+    schedule('afterRender', this, function () {
+      document.body.querySelector('#ember-a11y-refocus-nav-message').focus();
     });
   }
 
