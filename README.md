@@ -102,6 +102,19 @@ Additional Options
 * `skipText` - customize the text passed in the skip link. Defaults to "Skip to main content".
 * `navigationText` - customize the text passed as the navigation message. Defaults to "The page navigation is complete. You may now navigate the page content as you wish."
 
+FastBoot
+------------------------------------------------------------------------------
+
+With FastBoot, you'll want to guard the `<NavigationNarrator />` from rendering. Like so:
+
+```hbs
+{{#unless this.fastboot.isFastBoot}}
+  <NavigationNarrator />
+{{/unless
+```
+
+Where `this.fastboot` is the fastboot service injected in the application controller.
+
 Contributing
 ------------------------------------------------------------------------------
 
