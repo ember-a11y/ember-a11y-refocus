@@ -110,7 +110,7 @@ With FastBoot, you'll want to guard the `<NavigationNarrator />` from rendering.
 ```hbs
 {{#unless this.fastboot.isFastBoot}}
   <NavigationNarrator />
-{{/unless
+{{/unless}}
 ```
 
 Where `this.fastboot` is the fastboot service injected in the application controller.
