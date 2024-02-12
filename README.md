@@ -4,13 +4,13 @@
 [![Ember Observer Score](https://emberobserver.com/badges/ember-a11y-refocus.svg)](http://emberobserver.com/addons/ember-a11y-refocus)
 [![Build status](https://github.com/ember-a11y/ember-a11y-refocus/actions/workflows/main.yml/badge.svg)](https://github.com/ember-a11y/ember-a11y-refocus/actions)
 
-
 ## What This Addon Does
 
 This addon does three things:
+
 1. it adds a message to the page to let the screen reader user know that the route has changed and regular page navigation can resume (it is similar to [https://github.com/ember-a11y/a11y-announcer](https://github.com/ember-a11y/a11y-announcer) but does not use `aria-live`).
 2. It moves the focus to that message for the screen reader user, effectively resetting focus in Ember apps (similar to how a native web page/site works).
-3. It provides a bypass mechanism so the user can skip to the page's primary content (see https://www.w3.org/TR/WCAG20-TECHS/G1.html). You can opt out of this if you want (see the `Options` section for available options).
+3. It provides a bypass mechanism so the user can skip to the page's primary content (see <https://www.w3.org/TR/WCAG20-TECHS/G1.html>). You can opt out of this if you want (see the `Options` section for available options).
 
 ## Why This Addon is Needed
 
@@ -27,8 +27,6 @@ Async data can be loaded as it normally would be. Since this addon does not use 
 ### What if I want to put focus somewhere specific in the app flow?
 
 Since this will run before other content, focus can be programmatically moved by the developer to go somewhere else. The message should still read out, and is findable by users with screen readers.
-
-
 
 Compatibility
 ------------------------------------------------------------------------------
@@ -74,8 +72,8 @@ export default class ApplicationController extends Controller {
 
 The validator function:
 
-- Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
-- Should return `true` if refocusing should occur, otherwise `false`
+* Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
+* Should return `true` if refocusing should occur, otherwise `false`
 
 If you wish to extend the default behavior (rather than completely replacing it), you can import the default validator like so:
 

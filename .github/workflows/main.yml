@@ -18,14 +18,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 14.x
-      - name: install yarn
-        run: npm install -g yarn
       - name: install dependencies
-        run: yarn install
+        run: pnpm install
       - name: lint
-        run: yarn lint:js
+        run: pnpm lint:js
       - name: test
-        run: yarn test
+        run: pnpm test
 
   try-scenarios:
     name: ember-try
@@ -38,7 +36,6 @@ jobs:
       matrix:
         node: [ '14', '16' ]
         ember-try-scenario:
-          - ember-lts-3.24
           - ember-lts-3.28
           - ember-release
           - ember-beta
@@ -50,10 +47,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - name: install yarn
-        run: npm install -g yarn
       - name: install dependencies
-        run: yarn install
+        run: pnpm install
       - name: test
         env:
           EMBER_TRY_SCENARIO: ${{ matrix.ember-try-scenario }} ${{ matrix.node }}
