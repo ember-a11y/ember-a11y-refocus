@@ -6,7 +6,8 @@
     "ember-addon",
     "accessibility",
     "a11y",
-    "skiplink"
+    "skiplink",
+    "bypass block"
   ],
   "repository": "https://github.com/ember-a11y/ember-a11y-refocus",
   "license": "MIT",
@@ -100,8 +101,5 @@
       "release": true,
       "tokenRef": "GITHUB_AUTH"
     }
-  },
-  "volta": {
-    "node": "14.20.0"
   }
 }
