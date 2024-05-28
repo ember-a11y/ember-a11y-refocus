@@ -28,14 +28,11 @@ Async data can be loaded as it normally would be. Since this addon does not use 
 
 Since this will run before other content, focus can be programmatically moved by the developer to go somewhere else. The message should still read out, and is findable by users with screen readers.
 
-
-
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.26 or above
-* Ember CLI v3.26 or above
-* Node.js v12 or above
+* Ember.js v4.8 or above
+* Node.js v16 or above
 
 Installation
 ------------------------------------------------------------------------------
@@ -74,8 +71,8 @@ export default class ApplicationController extends Controller {
 
 The validator function:
 
-- Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
-- Should return `true` if refocusing should occur, otherwise `false`
+* Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
+* Should return `true` if refocusing should occur, otherwise `false`
 
 If you wish to extend the default behavior (rather than completely replacing it), you can import the default validator like so:
 

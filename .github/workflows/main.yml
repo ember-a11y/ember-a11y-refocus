@@ -36,9 +36,8 @@ jobs:
 
     strategy:
       matrix:
-        node: [ '16', '18' ]
+        node: [ '16.x', '18.x' ]
         ember-try-scenario:
-          - ember-lts-3.28
           - ember-lts-4.4
           - ember-lts-4.8
           - ember-release
