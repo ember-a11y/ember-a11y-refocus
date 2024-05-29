@@ -31,9 +31,8 @@ Since this will run before other content, focus can be programmatically moved by
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.26 or above
-* Ember CLI v3.26 or above
-* Node.js v14 or above
+* Ember.js v3.28 or above
+* Node.js v16 or above
 
 Installation
 ------------------------------------------------------------------------------
