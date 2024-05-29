@@ -64,19 +64,36 @@ export default class NavigationNarratorComponent extends Component {
   }
 
   /*
-   * @param includeQueryParams
+   * @param includeAllQueryParams
    * @type {boolean}
    * @description Whether or not to include all query params in definition of a route transition. If you want to include/exclude _some_ query params, the routeChangeValidator function should be used instead.
    * @default true
    */
-  get includeQueryParams() {
-    return this.args.includeQueryParams ?? true;
+  get includeAllQueryParams() {
+    return this.args.includeAllQueryParams ?? true;
+  }
+
+  /*
+   * @param hasQueryParams
+   * @type {boolean}
+   * @description Detect if the `transition.from` or the `transition.to` has queryParams.
+   * @default false
+   */
+  get hasQueryParams() {
+    const qps =
+      (this.transition.from && this.transition.from.queryParams) ||
+      (this.transition.to && this.transition.to.queryParams);
+
+    if (qps && Object.keys(qps).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   constructor() {
     super(...arguments);
 
-    // focus on the navigation message after render
     this.router.on('routeDidChange', this.onRouteChange);
 
     registerDestructor(this, () => {
@@ -88,7 +105,33 @@ export default class NavigationNarratorComponent extends Component {
 
   @action
   onRouteChange(transition) {
-    let shouldFocus = this.routeChangeValidator(transition);
+    let shouldFocus;
+    this.transition = transition; // We need to do this because we can't pass an argument to a getter
+
+    // if `includeAllQueryParams` is true, we should do the route transition and manage focus
+    if (this.includeAllQueryParams) {
+      shouldFocus = this.routeChangeValidator(transition);
+      console.log('shouldFocus 1 this is regular thing', shouldFocus);
+    } else if (
+      // if `includeAllQueryParams` is false BUT there are no query params, we should still manage focus
+      this.includeAllQueryParams === false &&
+      this.hasQueryParams === false
+    ) {
+      shouldFocus = this.routeChangeValidator(transition);
+      console.log('shouldFocus 2 still should manage focus', shouldFocus);
+    } else if (
+      this.includeAllQueryParams === false &&
+      this.hasQueryParams === true
+    ) {
+      // if `includeAllQueryParams` is false and there are query params, we should NOT manage focus
+      console.log(
+        'shouldFocus 3 should not transition or managefocus',
+        shouldFocus
+      );
+      return;
+    } else {
+      return;
+    }
 
     if (!shouldFocus) {
       return;
