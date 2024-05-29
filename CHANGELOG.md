@@ -1,3 +1,16 @@
+
+## v4.0.0 (2024-05-29)
+
+#### :boom: Breaking Change
+* [#365](https://github.com/ember-a11y/ember-a11y-refocus/pull/365) Dependency upgrades and switch to pnpm ([@MelSumner](https://github.com/MelSumner))
+
+#### :house: Internal
+* [#365](https://github.com/ember-a11y/ember-a11y-refocus/pull/365) Dependency upgrades and switch to pnpm ([@MelSumner](https://github.com/MelSumner))
+
+#### Committers: 2
+- Ilya Radchenko ([@knownasilya](https://github.com/knownasilya))
+- Melanie Sumner ([@MelSumner](https://github.com/MelSumner))
+
 ## v3.0.2 (2022-09-29)
 
 ## v3.0.1 (2022-09-29)
