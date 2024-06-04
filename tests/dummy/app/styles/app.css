@@ -30,12 +30,12 @@ html {
 body {
   font-size: 1rem;
   line-height: 1.2;
-  font-family: Roboto, sans-serif;
+  font-family: system-ui, Roboto, sans-serif;
   padding: 0
 }
 
 main {
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   min-height: 90vh;
 }
 
@@ -62,4 +62,10 @@ nav ul li a:hover {
 
 footer {
   padding: 0.5rem 1rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+footer a {
+  padding: 0.5rem;
 }

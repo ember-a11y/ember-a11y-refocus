@@ -64,19 +64,36 @@ export default class NavigationNarratorComponent extends Component {
   }
 
   /*
-   * @param includeQueryParams
+   * @param excludeAllQueryParams
    * @type {boolean}
    * @description Whether or not to include all query params in definition of a route transition. If you want to include/exclude _some_ query params, the routeChangeValidator function should be used instead.
-   * @default true
+   * @default false
    */
-  get includeQueryParams() {
-    return this.args.includeQueryParams ?? true;
+  get excludeAllQueryParams() {
+    return this.args.excludeAllQueryParams ?? false;
+  }
+
+  /*
+   * @param hasQueryParams
+   * @type {boolean}
+   * @description Detect if the `transition.from` or the `transition.to` has queryParams.
+   * @default false
+   */
+  get hasQueryParams() {
+    const qps =
+      (this.transition.from && this.transition.from.queryParams) ||
+      (this.transition.to && this.transition.to.queryParams);
+
+    if (qps && Object.keys(qps).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   constructor() {
     super(...arguments);
 
-    // focus on the navigation message after render
     this.router.on('routeDidChange', this.onRouteChange);
 
     registerDestructor(this, () => {
@@ -88,8 +105,16 @@ export default class NavigationNarratorComponent extends Component {
 
   @action
   onRouteChange(transition) {
-    let shouldFocus = this.routeChangeValidator(transition);
+    let shouldFocus;
+    this.transition = transition; // We need to do this because we can't pass an argument to a getter
 
+    if (this.excludeAllQueryParams && this.hasQueryParams) {
+      return;
+    }
+
+    shouldFocus = this.routeChangeValidator(transition);
+
+    // leaving this here for now because maybe it needs to be used in a custom validator function
     if (!shouldFocus) {
       return;
     }

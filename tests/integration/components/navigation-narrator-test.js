@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, clearRender, focus, blur, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { MockTransition } from '../../helpers/mocks';
+import { MockTransition, MockRouteInfo } from '../../helpers/mocks';
 
 module('Integration | Component | navigation-narrator', function (hooks) {
   setupRenderingTest(hooks);
@@ -54,7 +54,7 @@ module('Integration | Component | navigation-narrator', function (hooks) {
       assert.dom('.ember-a11y-refocus-skip-link').hasText('Skip to content');
     });
 
-    test('it shows/hides for keyboard users', async function (assert) {
+    test('it shows/hides the bypass block/skip link for keyboard users', async function (assert) {
       await render(hbs`<NavigationNarrator />`);
 
       assert.dom('.ember-a11y-refocus-skip-link').doesNotHaveClass('active');
@@ -70,7 +70,7 @@ module('Integration | Component | navigation-narrator', function (hooks) {
   });
 
   module('on routeDidChange', function () {
-    test('it takes focus', async function (assert) {
+    test('it handles focus', async function (assert) {
       let router = this.owner.lookup('service:router');
 
       await render(hbs`<NavigationNarrator />`);
@@ -108,6 +108,70 @@ module('Integration | Component | navigation-narrator', function (hooks) {
       await settled();
 
       assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
+    });
+
+    test('it transitions routes with query params and manages focus if `excludeAllQueryParams` is false (default)', async function (assert) {
+      let router = this.owner.lookup('service:router');
+
+      await render(hbs`<NavigationNarrator />`);
+
+      router.trigger(
+        'routeDidChange',
+        new MockTransition({
+          from: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+            queryParams: { region: 'amer' },
+          }),
+          to: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+            queryParams: { region: 'apac' },
+          }),
+        })
+      );
+
+      await settled();
+
+      assert.dom('#ember-a11y-refocus-nav-message').isFocused();
+    });
+
+    test('excludeAllQueryParams is true, queryParams exist, should not manage focus', async function (assert) {
+      let router = this.owner.lookup('service:router');
+
+      await render(hbs`<NavigationNarrator @excludeAllQueryParams={{true}} />`);
+
+      // router.trigger('routeDidChange', new MockTransition());
+      router.trigger(
+        'routeDidChange',
+        new MockTransition({
+          from: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+            queryParams: { region: 'amer' },
+          }),
+          to: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+            queryParams: { region: 'apac' },
+          }),
+        })
+      );
+
+      await settled();
+
+      assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
+    });
+
+    test('excludeAllQueryParams is true, but queryParams do not exist, manage focus', async function (assert) {
+      let router = this.owner.lookup('service:router');
+
+      await render(hbs`<NavigationNarrator @excludeAllQueryParams={{true}} />`);
+      router.trigger('routeDidChange', new MockTransition());
+
+      await settled();
+
+      assert.dom('#ember-a11y-refocus-nav-message').isFocused();
     });
   });
 });
