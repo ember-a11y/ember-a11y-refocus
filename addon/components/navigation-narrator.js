@@ -108,17 +108,11 @@ export default class NavigationNarratorComponent extends Component {
     let shouldFocus;
     this.transition = transition; // We need to do this because we can't pass an argument to a getter
 
-    if (this.excludeAllQueryParams === true) {
-      if (this.hasQueryParams === true) {
-        return;
-      } else {
-        // it does not matter, there aren't any query params
-        shouldFocus = this.routeChangeValidator(transition);
-      }
-    } else {
-      // excludeAllQueryParams is false, carry on
-      shouldFocus = this.routeChangeValidator(transition);
+    if (this.excludeAllQueryParams && this.hasQueryParams) {
+      return;
     }
+
+    shouldFocus = this.routeChangeValidator(transition);
 
     // leaving this here for now because maybe it needs to be used in a custom validator function
     if (!shouldFocus) {
