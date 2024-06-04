@@ -110,7 +110,7 @@ module('Integration | Component | navigation-narrator', function (hooks) {
       assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
     });
 
-    test('it transitions routes with query params and manages focus if `includeAllQueryParams` is true (default)', async function (assert) {
+    test('it transitions routes with query params and manages focus if `excludeAllQueryParams` is false (default)', async function (assert) {
       let router = this.owner.lookup('service:router');
 
       await render(hbs`<NavigationNarrator />`);
@@ -121,24 +121,12 @@ module('Integration | Component | navigation-narrator', function (hooks) {
           from: new MockRouteInfo({
             name: 'biscuit',
             params: { id: 'hobnob' },
-            parent: new MockRouteInfo({
-              name: 'biscuits',
-              queryParams: { region: 'amer' },
-              parent: new MockRouteInfo({
-                name: 'application',
-              }),
-            }),
+            queryParams: { region: 'amer' },
           }),
           to: new MockRouteInfo({
             name: 'biscuit',
             params: { id: 'hobnob' },
-            parent: new MockRouteInfo({
-              name: 'biscuits',
-              queryParams: { region: 'apac' },
-              parent: new MockRouteInfo({
-                name: 'application',
-              }),
-            }),
+            queryParams: { region: 'apac' },
           }),
         })
       );
@@ -148,12 +136,10 @@ module('Integration | Component | navigation-narrator', function (hooks) {
       assert.dom('#ember-a11y-refocus-nav-message').isFocused();
     });
 
-    test('includeAllQueryParams is false, queryParams exist', async function (assert) {
+    test('excludeAllQueryParams is true, queryParams exist, should not manage focus', async function (assert) {
       let router = this.owner.lookup('service:router');
 
-      await render(
-        hbs`<NavigationNarrator @includeAllQueryParams={{false}} />`
-      );
+      await render(hbs`<NavigationNarrator @excludeAllQueryParams={{true}} />`);
 
       // router.trigger('routeDidChange', new MockTransition());
       router.trigger(
@@ -177,12 +163,10 @@ module('Integration | Component | navigation-narrator', function (hooks) {
       assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
     });
 
-    test('includeAllQueryParams is false, but queryParams do not exist', async function (assert) {
+    test('excludeAllQueryParams is true, but queryParams do not exist, manage focus', async function (assert) {
       let router = this.owner.lookup('service:router');
 
-      await render(
-        hbs`<NavigationNarrator @includeAllQueryParams={{false}} />`
-      );
+      await render(hbs`<NavigationNarrator @excludeAllQueryParams={{true}} />`);
       router.trigger('routeDidChange', new MockTransition());
 
       await settled();

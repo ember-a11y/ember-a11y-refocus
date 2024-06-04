@@ -64,13 +64,13 @@ export default class NavigationNarratorComponent extends Component {
   }
 
   /*
-   * @param includeAllQueryParams
+   * @param excludeAllQueryParams
    * @type {boolean}
    * @description Whether or not to include all query params in definition of a route transition. If you want to include/exclude _some_ query params, the routeChangeValidator function should be used instead.
-   * @default true
+   * @default false
    */
-  get includeAllQueryParams() {
-    return this.args.includeAllQueryParams ?? true;
+  get excludeAllQueryParams() {
+    return this.args.excludeAllQueryParams ?? false;
   }
 
   /*
@@ -93,6 +93,35 @@ export default class NavigationNarratorComponent extends Component {
 
   constructor() {
     super(...arguments);
+    this.router.on('routeWillChange', (transition) => {
+      let { to: toRouteInfo, from: fromRouteInfo } = transition;
+      if (fromRouteInfo) {
+        console.log(`Transitioning from -> ${fromRouteInfo.name}`);
+        console.log(`From QPs: ${JSON.stringify(fromRouteInfo.queryParams)}`);
+        console.log(`From Params: ${JSON.stringify(fromRouteInfo.params)}`);
+      }
+
+      if (toRouteInfo) {
+        console.log(`to -> ${toRouteInfo.name}`);
+        console.log(`To QPs: ${JSON.stringify(toRouteInfo.queryParams)}`);
+        console.log(`To Params: ${JSON.stringify(toRouteInfo.params)}`);
+      }
+    });
+
+    this.router.on('routeDidChange', (transition) => {
+      let { to: toRouteInfo, from: fromRouteInfo } = transition;
+      if (fromRouteInfo) {
+        console.log(`Transitioned from -> ${fromRouteInfo.name}`);
+        console.log(`From QPs: ${JSON.stringify(fromRouteInfo.queryParams)}`);
+        console.log(`From Params: ${JSON.stringify(fromRouteInfo.params)}`);
+      }
+
+      if (toRouteInfo) {
+        console.log(`to -> ${toRouteInfo.name}`);
+        console.log(`To QPs: ${JSON.stringify(toRouteInfo.queryParams)}`);
+        console.log(`To Params: ${JSON.stringify(toRouteInfo.params)}`);
+      }
+    });
 
     this.router.on('routeDidChange', this.onRouteChange);
 
@@ -108,31 +137,19 @@ export default class NavigationNarratorComponent extends Component {
     let shouldFocus;
     this.transition = transition; // We need to do this because we can't pass an argument to a getter
 
-    // if `includeAllQueryParams` is true, we should do the route transition and manage focus
-    if (this.includeAllQueryParams) {
-      shouldFocus = this.routeChangeValidator(transition);
-      console.log('shouldFocus 1 this is regular thing', shouldFocus);
-    } else if (
-      // if `includeAllQueryParams` is false BUT there are no query params, we should still manage focus
-      this.includeAllQueryParams === false &&
-      this.hasQueryParams === false
-    ) {
-      shouldFocus = this.routeChangeValidator(transition);
-      console.log('shouldFocus 2 still should manage focus', shouldFocus);
-    } else if (
-      this.includeAllQueryParams === false &&
-      this.hasQueryParams === true
-    ) {
-      // if `includeAllQueryParams` is false and there are query params, we should NOT manage focus
-      console.log(
-        'shouldFocus 3 should not transition or managefocus',
-        shouldFocus
-      );
-      return;
+    if (this.excludeAllQueryParams === true) {
+      if (this.hasQueryParams === true) {
+        return;
+      } else {
+        // it does not matter, there aren't any query params
+        shouldFocus = this.routeChangeValidator(transition);
+      }
     } else {
-      return;
+      // excludeAllQueryParams is false, carry on
+      shouldFocus = this.routeChangeValidator(transition);
     }
 
+    // leaving this here for now because maybe it needs to be used in a custom validator function
     if (!shouldFocus) {
       return;
     }

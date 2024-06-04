@@ -71,8 +71,8 @@ export default class ApplicationController extends Controller {
 
 The validator function:
 
-- Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
-- Should return `true` if refocusing should occur, otherwise `false`
+* Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
+* Should return `true` if refocusing should occur, otherwise `false`
 
 If you wish to extend the default behavior (rather than completely replacing it), you can import the default validator like so:
 
@@ -94,10 +94,11 @@ If you wish to extend the default behavior (rather than completely replacing it)
 Additional Options
 ------------------------------------------------------------------------------
 
-* `skipLink` - pass `{{false}}` if you do not want to implement a skip link.
+* `skipLink` - pass `{{false}}` if you do not want to implement a bypass block/skip link.
 * `skipTo` - pass a specific element ID that should receive focus on skip.
 * `skipText` - customize the text passed in the skip link. Defaults to "Skip to main content".
 * `navigationText` - customize the text passed as the navigation message. Defaults to "The page navigation is complete. You may now navigate the page content as you wish."
+* `excludeAllQueryParams` - pass `{{true}}` if you want to exclude all query params from the route change check.
 
 FastBoot
 ------------------------------------------------------------------------------
