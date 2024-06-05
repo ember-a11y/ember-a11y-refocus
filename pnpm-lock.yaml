@@ -59,10 +59,10 @@ devDependencies:
     specifier: 2.4.2
     version: 2.4.2(webpack@5.91.0)
   ember-cli:
-    specifier: ^4.1.0
+    specifier: ^4.12.3
     version: 4.12.3
   ember-cli-dependency-checker:
-    specifier: ^3.2.0
+    specifier: ^3.3.2
     version: 3.3.2(ember-cli@4.12.3)
   ember-cli-inject-live-reload:
     specifier: ^2.1.0
@@ -10641,6 +10641,7 @@ packages:
   /normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: true
 
   /normalize-url@4.5.1:
