@@ -23,7 +23,7 @@ devDependencies:
     specifier: ^7.21.0
     version: 7.21.0(@babel/core@7.24.6)
   '@ember/optional-features':
-    specifier: ^2.0.0
+    specifier: ^2.1.0
     version: 2.1.0
   '@ember/string':
     specifier: ^3.1.1
