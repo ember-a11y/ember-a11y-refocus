@@ -25,6 +25,9 @@ devDependencies:
   '@ember/optional-features':
     specifier: ^2.0.0
     version: 2.1.0
+  '@ember/string':
+    specifier: ^3.1.1
+    version: 3.1.1
   '@ember/test-helpers':
     specifier: ^2.6.0
     version: 2.9.4(@babel/core@7.24.6)(ember-source@4.12.4)
@@ -1433,6 +1436,15 @@ packages:
       inquirer: 7.3.3
       mkdirp: 1.0.4
       silent-error: 1.1.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@ember/string@3.1.1:
+    resolution: {integrity: sha512-UbXJ+k3QOrYN4SRPHgXCqYIJ+yWWUg1+vr0H4DhdQPTy8LJfyqwZ2tc5uqpSSnEXE+/1KopHBE5J8GDagAg5cg==}
+    engines: {node: 12.* || 14.* || >= 16}
+    dependencies:
+      ember-cli-babel: 7.26.11
     transitivePeerDependencies:
       - supports-color
     dev: true
