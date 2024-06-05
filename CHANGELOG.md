@@ -1,4 +1,14 @@
 
+
+## v4.1.0 (2024-06-05)
+
+#### :house: Internal
+* [#369](https://github.com/ember-a11y/ember-a11y-refocus/pull/369) Add the `ember-try` scenarios back into the CI ([@MelSumner](https://github.com/MelSumner))
+* [#366](https://github.com/ember-a11y/ember-a11y-refocus/pull/366) Add js-doc style comments ([@MelSumner](https://github.com/MelSumner))
+
+#### Committers: 1
+- Melanie Sumner ([@MelSumner](https://github.com/MelSumner))
+
 ## v4.0.0 (2024-05-29)
 
 #### :boom: Breaking Change
