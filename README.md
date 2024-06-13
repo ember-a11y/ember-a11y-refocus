@@ -49,7 +49,7 @@ Usage
 
 Example:
 
-```
+```html
 <header>
   <NavigationNarrator/>
   <!-- other header content-->
