@@ -44,8 +44,20 @@ ember install ember-a11y-refocus
 Usage
 ------------------------------------------------------------------------------
 
-Insert `<NavigationNarrator/>` into your application.hbs file, preferably inside of a `<header>` element.
-Next, add `id="main"` to the primary content element in your application (hopefully a `<main>` element).
+- Insert `<NavigationNarrator/>` into your application.hbs file, preferably inside of a `<header>` element.
+- Next, add `id="main"` to the primary content element in your application (hopefully a `<main>` element).
+
+Example:
+
+```
+<header>
+  <NavigationNarrator/>
+  <!-- other header content-->
+</header>
+<main id="main">
+ <!--main content-->
+</main>
+```
 
 ### Customizing the definition of a route change
 
