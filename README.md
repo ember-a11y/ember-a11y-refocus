@@ -45,6 +45,7 @@ Usage
 ------------------------------------------------------------------------------
 
 Insert `<NavigationNarrator/>` into your application.hbs file, preferably inside of a `<header>` element.
+Next, add `id="main"` to the primary content element in your application (hopefully a `<main>` element).
 
 ### Customizing the definition of a route change
 
