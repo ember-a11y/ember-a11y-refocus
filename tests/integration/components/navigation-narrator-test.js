@@ -173,5 +173,29 @@ module('Integration | Component | navigation-narrator', function (hooks) {
 
       assert.dom('#ember-a11y-refocus-nav-message').isFocused();
     });
+
+    test('excludeAllQueryParams is true, queryParams do not exist but are added, do not manage focus', async function (assert) {
+      let router = this.owner.lookup('service:router');
+
+      await render(hbs`<NavigationNarrator @excludeAllQueryParams={{true}} />`);
+      router.trigger(
+        'routeDidChange',
+        new MockTransition({
+          from: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+          }),
+          to: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+            queryParams: { region: 'apac' },
+          }),
+        })
+      );
+
+      await settled();
+
+      assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
+    });
   });
 });
