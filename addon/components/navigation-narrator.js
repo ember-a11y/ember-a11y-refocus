@@ -107,7 +107,7 @@ export default class NavigationNarratorComponent extends Component {
     let shouldFocus;
     this.transition = transition; // We need to do this because we can't pass an argument to a getter
 
-    let hasSameRoute = this.transition.from?.name === this.transition.to.name;
+    let hasSameRoute = this.transition.from.name === this.transition.to.name;
 
     if (this.excludeAllQueryParams && this.hasQueryParams && hasSameRoute) {
       return;
