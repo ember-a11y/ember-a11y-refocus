@@ -197,5 +197,53 @@ module('Integration | Component | navigation-narrator', function (hooks) {
 
       assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
     });
+
+    test('excludeAllQueryParams is true, queryParams do exist on the route but then are emptied, still do not manage focus', async function (assert) {
+      let router = this.owner.lookup('service:router');
+
+      await render(hbs`<NavigationNarrator @excludeAllQueryParams={{true}} />`);
+      router.trigger(
+        'routeDidChange',
+        new MockTransition({
+          from: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+            queryParams: { region: 'apac' },
+          }),
+          to: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+          }),
+        })
+      );
+
+      await settled();
+
+      assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
+    });
+
+    test('excludeAllQueryParams is true, queryParams do exist on the route, user navigates to new route, manage focus', async function (assert) {
+      let router = this.owner.lookup('service:router');
+
+      await render(hbs`<NavigationNarrator @excludeAllQueryParams={{true}} />`);
+      router.trigger(
+        'routeDidChange',
+        new MockTransition({
+          from: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+            queryParams: { region: 'apac' },
+          }),
+          to: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'digestive' },
+          }),
+        })
+      );
+
+      await settled();
+
+      assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
+    });
   });
 });
