@@ -81,7 +81,7 @@ export default class NavigationNarratorComponent extends Component {
    */
   get hasQueryParams() {
     if (
-      Object.keys(this.transition.from?.queryParams || {}).length ||
+      Object.keys(this.transition.from.queryParams || {}).length ||
       Object.keys(this.transition.to.queryParams).length > 0
     ) {
       return true;
