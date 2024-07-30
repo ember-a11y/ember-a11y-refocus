@@ -77,14 +77,10 @@ export default class NavigationNarratorComponent extends Component {
   /*
    * @param hasQueryParams
    * @type {boolean}
-   * @description Detect if the `transition.from` or the `transition.to` has queryParams.
+   * @description Check for queryParams.
    * @default false
    */
   get hasQueryParams() {
-    // const qps =
-    //   (this.transition.from && this.transition.from.queryParams) ||
-    //   (this.transition.to && this.transition.to.queryParams);
-
     if (
       Object.keys(this.transition.from?.queryParams || {}).length ||
       Object.keys(this.transition.to.queryParams).length > 0
