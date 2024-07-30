@@ -9,6 +9,7 @@ import { defaultValidator } from 'ember-a11y-refocus';
 export default class NavigationNarratorComponent extends Component {
   @service router;
   @tracked isSkipLinkFocused = false;
+  @tracked qps;
   timer = null;
 
   /*
@@ -80,11 +81,14 @@ export default class NavigationNarratorComponent extends Component {
    * @default false
    */
   get hasQueryParams() {
-    const qps =
-      (this.transition.from && this.transition.from.queryParams) ||
-      (this.transition.to && this.transition.to.queryParams);
+    // const qps =
+    //   (this.transition.from && this.transition.from.queryParams) ||
+    //   (this.transition.to && this.transition.to.queryParams);
 
-    if (qps && Object.keys(qps).length > 0) {
+    if (
+      Object.keys(this.transition.from?.queryParams || {}).length ||
+      Object.keys(this.transition.to.queryParams).length > 0
+    ) {
       return true;
     } else {
       return false;
