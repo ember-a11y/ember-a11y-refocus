@@ -9,7 +9,6 @@ import { defaultValidator } from 'ember-a11y-refocus';
 export default class NavigationNarratorComponent extends Component {
   @service router;
   @tracked isSkipLinkFocused = false;
-  @tracked qps;
   timer = null;
 
   /*
