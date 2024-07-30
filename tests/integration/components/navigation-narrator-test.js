@@ -198,7 +198,7 @@ module('Integration | Component | navigation-narrator', function (hooks) {
       assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
     });
 
-    test('excludeAllQueryParams is true, queryParams do exist on the route but then are emptied, still do not manage focus', async function (assert) {
+    test('excludeAllQueryParams is true, queryParams exist on the route but then are emptied, still do not manage focus', async function (assert) {
       let router = this.owner.lookup('service:router');
 
       await render(hbs`<NavigationNarrator @excludeAllQueryParams={{true}} />`);
@@ -222,7 +222,7 @@ module('Integration | Component | navigation-narrator', function (hooks) {
       assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
     });
 
-    test('excludeAllQueryParams is true, queryParams do exist on the route, user navigates to new route, manage focus', async function (assert) {
+    test('excludeAllQueryParams is true, queryParams exist on the route, user navigates to new route without any query params, manage focus', async function (assert) {
       let router = this.owner.lookup('service:router');
 
       await render(hbs`<NavigationNarrator @excludeAllQueryParams={{true}} />`);
@@ -233,17 +233,28 @@ module('Integration | Component | navigation-narrator', function (hooks) {
             name: 'biscuit',
             params: { id: 'hobnob' },
             queryParams: { region: 'apac' },
+            parent: new MockRouteInfo({
+              name: 'biscuits',
+              parent: new MockRouteInfo({
+                name: 'application',
+              }),
+            }),
           }),
           to: new MockRouteInfo({
-            name: 'biscuit',
-            params: { id: 'digestive' },
+            name: 'index',
+            parent: new MockRouteInfo({
+              name: 'cakes',
+              parent: new MockRouteInfo({
+                name: 'application',
+              }),
+            }),
           }),
         })
       );
 
       await settled();
 
-      assert.dom('#ember-a11y-refocus-nav-message').isNotFocused();
+      assert.dom('#ember-a11y-refocus-nav-message').isFocused();
     });
   });
 });
