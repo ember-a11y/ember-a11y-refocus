@@ -76,15 +76,14 @@ export default class NavigationNarratorComponent extends Component {
   /*
    * @param hasQueryParams
    * @type {boolean}
-   * @description Detect if the `transition.from` or the `transition.to` has queryParams.
+   * @description Check for queryParams.
    * @default false
    */
   get hasQueryParams() {
-    const qps =
-      (this.transition.from && this.transition.from.queryParams) ||
-      (this.transition.to && this.transition.to.queryParams);
-
-    if (qps && Object.keys(qps).length > 0) {
+    if (
+      Object.keys(this.transition.from.queryParams || {}).length ||
+      Object.keys(this.transition.to.queryParams).length > 0
+    ) {
       return true;
     } else {
       return false;
@@ -108,7 +107,10 @@ export default class NavigationNarratorComponent extends Component {
     let shouldFocus;
     this.transition = transition; // We need to do this because we can't pass an argument to a getter
 
-    if (this.excludeAllQueryParams && this.hasQueryParams) {
+    // add a check to see if it's the same route (question: what if the user refreshes the page?)
+    let hasSameRoute = this.transition.from.name === this.transition.to.name;
+
+    if (this.excludeAllQueryParams && this.hasQueryParams && hasSameRoute) {
       return;
     }
 
