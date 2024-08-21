@@ -82,7 +82,7 @@ export default class NavigationNarratorComponent extends Component {
   get hasQueryParams() {
     if (
       Object.keys(this.transition.from?.queryParams || {}).length ||
-      Object.keys(this.transition.to.queryParams).length > 0
+      Object.keys(this.transition.to?.queryParams || {}).length > 0
     ) {
       return true;
     } else {
@@ -108,7 +108,7 @@ export default class NavigationNarratorComponent extends Component {
     this.transition = transition; // We need to do this because we can't pass an argument to a getter
 
     // add a check to see if it's the same route
-    let hasSameRoute = this.transition.from?.name === this.transition.to.name;
+    let hasSameRoute = this.transition.from?.name === this.transition.to?.name;
 
     if (this.excludeAllQueryParams && this.hasQueryParams && hasSameRoute) {
       return;
