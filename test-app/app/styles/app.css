@@ -1,0 +1,80 @@
+/* #ember-a11y-refocus-nav-message:active,
+#ember-a11y-refocus-nav-message:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+} */
+
+nav,
+nav ul {
+  width: 100%;
+}
+
+body,
+nav ul,
+nav ul li {
+  margin: 0;
+}
+
+nav,
+nav ul,
+nav ul li {
+  padding: 0;
+  display: flex;
+}
+
+*,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.2;
+  font-family: system-ui, Roboto, sans-serif;
+  padding: 0;
+}
+
+main {
+  padding: 0.5rem 1rem;
+  min-height: 90vh;
+}
+
+footer {
+  padding: 0.5rem 1rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+footer a {
+  padding: 0.5rem;
+}
+
+nav {
+  background-color: navy;
+  margin: 0 auto;
+  height: fit-content;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li a {
+  padding: 1rem;
+  color: #fff;
+  border-bottom: 3px solid navy;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  border-bottom: 3px solid #ff0;
+}
