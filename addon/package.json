@@ -1,0 +1,111 @@
+{
+  "name": "ember-a11y-refocus",
+  "version": "4.1.4",
+  "description": "accessibility addon to announce route change, reset focus, and provide a skip link",
+  "keywords": [
+    "ember-addon",
+    "accessibility",
+    "a11y",
+    "skiplink"
+  ],
+  "repository": "https://github.com/ember-a11y/ember-a11y-refocus",
+  "license": "MIT",
+  "author": "Melanie Sumner <melaniersumner@gmail.com>",
+  "contributors": [
+    {
+      "name": "Alexey Kulakov"
+    }
+  ],
+  "exports": {
+    ".": {
+      "types": "./declarations/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./declarations/*.d.ts",
+      "default": "./dist/*.js"
+    },
+    "./addon-main.js": "./addon-main.cjs"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "declarations/*"
+      ]
+    }
+  },
+  "files": [
+    "addon-main.cjs",
+    "declarations",
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup --config",
+    "format": "prettier . --cache --write",
+    "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\" --prefixColors auto",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:css:fix": "concurrently \"pnpm:lint:css -- --fix\"",
+    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\" --prefixColors auto && pnpm format",
+    "lint:format": "prettier . --cache --check --write",
+    "lint:hbs": "ember-template-lint . --no-error-on-unmatched-pattern",
+    "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "lint:types": "glint",
+    "prepack": "rollup --config",
+    "start": "rollup --config --watch",
+    "test": "echo 'A v2 addon does not have tests, run tests in test-app'"
+  },
+  "dependencies": {
+    "@embroider/addon-shim": "^1.9.0",
+    "@glimmer/component": "^2.0.0",
+    "@glimmer/tracking": "^1.1.2",
+    "decorator-transforms": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/eslint-parser": "^7.26.5",
+    "@babel/plugin-transform-typescript": "^7.26.5",
+    "@babel/runtime": "^7.26.0",
+    "@embroider/addon-dev": "^7.1.1",
+    "@eslint/js": "^9.18.0",
+    "@glint/core": "^1.5.1",
+    "@glint/environment-ember-loose": "^1.5.1",
+    "@glint/environment-ember-template-imports": "^1.5.1",
+    "@glint/template": "^1.5.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@tsconfig/ember": "^3.0.8",
+    "babel-plugin-ember-template-compilation": "^2.3.0",
+    "concurrently": "^9.1.2",
+    "ember-source": "^6.1.0",
+    "ember-template-lint": "^6.1.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-ember": "^12.3.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^17.15.1",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-ember-template-tag": "^2.0.4",
+    "rollup": "^4.31.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "stylelint": "^16.13.2",
+    "stylelint-config-standard": "^37.0.0",
+    "typescript": "~5.7.3",
+    "typescript-eslint": "^8.21.0"
+  },
+  "peerDependencies": {
+    "ember-source": ">= 4.12.0"
+  },
+  "ember": {
+    "edition": "octane"
+  },
+  "ember-addon": {
+    "app-js": {
+      "./components/navigation-narrator.js": "./dist/_app_/components/navigation-narrator.js"
+    },
+    "main": "addon-main.cjs",
+    "type": "addon",
+    "version": 2
+  }
+}

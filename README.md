@@ -31,8 +31,8 @@ Since this will run before other content, focus can be programmatically moved by
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.28 or above
-* Node.js v16 or above
+* Ember.js v4.12 or above
+* Node.js v18 or above
 
 Installation
 ------------------------------------------------------------------------------
@@ -58,6 +58,49 @@ Example:
  <!--main content-->
 </main>
 ```
+
+Gjs/Gts:
+
+```gts
+import { NavigationNarrator } from 'ember-a11y-refocus';
+
+<template>
+  <NavigationNarrator/>
+  <!-- other header content-->
+</template>
+```
+
+Template Registry is available for loose mode users:
+
+```js
+import type EmberA11yRefocusRegistry from 'ember-a11y-refocus/template-registry';
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry
+    extends EmberA11yRefocusRegistry{
+  }
+}
+```
+
+Minimal CSS is provided to style the skip link and navigation message. You can override these styles in your app's CSS.
+
+```js
+// ember-cli-build.js
+const app = new EmberApp(defaults, {
+  const app = new EmberApp(defaults, {
+      sassOptions: {
+      includePaths: ['node_modules/ember-a11y-refocus/dist/styles'],
+    },
+  });
+});
+```
+
+```scss
+// app.scss
+
+@use "navigation-narrator.css";
+```
+
 
 ### Customizing the definition of a route change
 
