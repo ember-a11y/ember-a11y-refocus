@@ -285,5 +285,51 @@ module('Integration | Component | navigation-narrator', function (hooks) {
 
       assert.dom('#ember-a11y-refocus-nav-message').isFocused();
     });
+
+    test('excludeAllQueryParams is true, user navigates to new route, transition is aborted, manage focus', async function (assert) {
+      const router = this.owner.lookup('service:router');
+
+      await render(
+        <template>
+          <NavigationNarrator @excludeAllQueryParams={{true}} />
+        </template>,
+      );
+      router.trigger(
+        'routeDidChange',
+        new MockTransition({
+          from: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+          }),
+        }),
+      );
+
+      await settled();
+
+      assert.dom('#ember-a11y-refocus-nav-message').isFocused();
+    });
+
+    test('excludeAllQueryParams is true, user navigates to new route, transition is missing origin information, manage focus', async function (assert) {
+      const router = this.owner.lookup('service:router');
+
+      await render(
+        <template>
+          <NavigationNarrator @excludeAllQueryParams={{true}} />
+        </template>,
+      );
+      router.trigger(
+        'routeDidChange',
+        new MockTransition({
+          to: new MockRouteInfo({
+            name: 'biscuit',
+            params: { id: 'hobnob' },
+          }),
+        }),
+      );
+
+      await settled();
+
+      assert.dom('#ember-a11y-refocus-nav-message').isFocused();
+    });
   });
 });
