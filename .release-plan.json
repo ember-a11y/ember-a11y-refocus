@@ -1,0 +1,18 @@
+{
+  "solution": {
+    "ember-a11y-refocus": {
+      "impact": "major",
+      "oldVersion": "4.1.4",
+      "newVersion": "5.0.0",
+      "tagName": "latest",
+      "constraints": [
+        {
+          "impact": "major",
+          "reason": "Appears in changelog section :boom: Breaking Change"
+        }
+      ],
+      "pkgJSONPath": "./addon/package.json"
+    }
+  },
+  "description": "## Release (2025-06-13)\n\n* ember-a11y-refocus 5.0.0 (major)\n\n#### :boom: Breaking Change\n* `ember-a11y-refocus`\n  * [#390](https://github.com/ember-a11y/ember-a11y-refocus/pull/390) breaking: conversion to v2 addon format ([@aklkv](https://github.com/aklkv))\n\n#### :house: Internal\n* [#405](https://github.com/ember-a11y/ember-a11y-refocus/pull/405) Add release-plan to addon ([@MelSumner](https://github.com/MelSumner))\n* [#398](https://github.com/ember-a11y/ember-a11y-refocus/pull/398) fix: pnpm `verify-deps-before-run=install ` flag ([@aklkv](https://github.com/aklkv))\n* [#401](https://github.com/ember-a11y/ember-a11y-refocus/pull/401) tests: Add tests for partial transition ([@KamiKillertO](https://github.com/KamiKillertO))\n\n#### Committers: 3\n- Alexey Kulakov ([@aklkv](https://github.com/aklkv))\n- Benjamin JEGARD ([@KamiKillertO](https://github.com/KamiKillertO))\n- Melanie Sumner ([@MelSumner](https://github.com/MelSumner))\n"
+}
