@@ -2,6 +2,16 @@
 
 ## Release (2025-06-13)
 
+
+
+#### :memo: Documentation
+* [#407](https://github.com/ember-a11y/ember-a11y-refocus/pull/407) Update README.md ([@MelSumner](https://github.com/MelSumner))
+
+#### Committers: 1
+- Melanie Sumner ([@MelSumner](https://github.com/MelSumner))
+
+## Release (2025-06-13)
+
 * ember-a11y-refocus 5.0.0 (major)
 
 #### :boom: Breaking Change
