@@ -2,7 +2,7 @@
 
 [![Latest NPM release](https://img.shields.io/npm/v/ember-a11y-refocus.svg)](https://www.npmjs.com/package/ember-a11y-refocus)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-a11y-refocus.svg)](http://emberobserver.com/addons/ember-a11y-refocus)
-[![Build status](https://github.com/ember-a11y/ember-a11y-refocus/actions/workflows/main.yml/badge.svg)](https://github.com/ember-a11y/ember-a11y-refocus/actions)
+[![Publish Stable](https://github.com/ember-a11y/ember-a11y-refocus/actions/workflows/publish.yml/badge.svg)](https://github.com/ember-a11y/ember-a11y-refocus/actions/workflows/publish.yml)
 
 ## What This Addon Does
 
