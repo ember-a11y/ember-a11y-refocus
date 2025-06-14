@@ -1,0 +1,34 @@
+import { NavigationNarrator } from 'ember-a11y-refocus';
+import { LinkTo } from '@ember/routing';
+
+import type { TOC } from '@ember/component/template-only';
+
+interface ApplicationRouteSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+}
+
+<template>
+  <header>
+    <NavigationNarrator />
+
+    <nav>
+      <ul>
+        <li><LinkTo @route="index">Home</LinkTo></li>
+        <li><LinkTo @route="alpha">Alpha</LinkTo></li>
+        <li><LinkTo @route="bravo">Bravo</LinkTo></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    {{outlet}}
+  </main>
+
+  <footer>
+    <p><a href="https://github.com/ember-a11y/ember-a11y-refocus">GitHub Repo</a></p>
+    <p><a href="/tests">Tests (for development)</a></p>
+  </footer>
+</template> satisfies TOC<ApplicationRouteSignature>;
