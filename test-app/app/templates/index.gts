@@ -98,7 +98,9 @@ export interface IndexRouteSignature {
     all involved:
     <ol>
       <li>
-        the performance gains from `pushState` remain in place
+        the performance gains from
+        <i>pushState</i>
+        remain in place
       </li>
 
       <li>
