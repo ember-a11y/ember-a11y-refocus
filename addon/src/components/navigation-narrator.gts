@@ -3,14 +3,13 @@ import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 import { registerDestructor } from '@ember/destroyable';
-import { schedule, cancel } from '@ember/runloop';
+import { scheduleTask } from 'ember-lifeline';
 
 import { defaultValidator } from '../utils/validators.js';
 
 import type RouterService from '@ember/routing/router-service';
-import type Owner from '@ember/owner';
 import type Transition from '@ember/routing/transition';
-import type { Timer } from '@ember/runloop';
+import type Owner from '@ember/owner';
 
 export interface NavigationNarratorSignature {
   Args: {
@@ -34,7 +33,6 @@ export default class NavigationNarrator extends Component<NavigationNarratorSign
 
   @tracked isSkipLinkFocused = false;
 
-  timer: Timer | undefined;
   transition: Transition | undefined;
 
   /*
@@ -122,9 +120,6 @@ export default class NavigationNarrator extends Component<NavigationNarratorSign
     this.router.on('routeDidChange', this.onRouteChange);
 
     registerDestructor(this, () => {
-      // eslint-disable-next-line ember/no-runloop
-      cancel(this.timer);
-      this.timer = undefined;
       this.router.off('routeDidChange', this.onRouteChange);
     });
   }
@@ -147,9 +142,7 @@ export default class NavigationNarrator extends Component<NavigationNarratorSign
       return;
     }
 
-    // eslint-disable-next-line ember/no-runloop
-    this.timer = schedule('afterRender', this, function () {
-      this.timer = undefined;
+    scheduleTask(this, 'render', () => {
       (
         document.body.querySelector(
           '#ember-a11y-refocus-nav-message',
