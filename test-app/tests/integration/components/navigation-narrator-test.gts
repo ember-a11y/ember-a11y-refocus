@@ -3,7 +3,7 @@ import { setupRenderingTest } from 'test-app/tests/helpers';
 import { render, clearRender, focus, blur, settled } from '@ember/test-helpers';
 import { NavigationNarrator } from 'ember-a11y-refocus';
 
-import { MockTransition, MockRouteInfo } from '../../helpers/mocks';
+import { MockTransition, MockRouteInfo } from 'test-app/tests/helpers/mocks';
 
 module('Integration | Component | navigation-narrator', function (hooks) {
   setupRenderingTest(hooks);

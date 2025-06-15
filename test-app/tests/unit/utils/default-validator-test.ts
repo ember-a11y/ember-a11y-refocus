@@ -1,9 +1,12 @@
 import { module, test } from 'qunit';
+import { setupTest } from 'test-app/tests/helpers';
 import { defaultValidator } from 'ember-a11y-refocus';
 
-import { MockTransition, MockRouteInfo } from '../../helpers/mocks';
+import { MockTransition, MockRouteInfo } from 'test-app/tests/helpers/mocks';
 
-module('Unit | Utility | defaultValidator', function () {
+module('Unit | Utility | defaultValidator', function (hooks) {
+  setupTest(hooks);
+
   test('when all routes, params, and query params are equal', function (assert) {
     const transition = new MockTransition({
       from: new MockRouteInfo({
