@@ -16,9 +16,23 @@ interface ApplicationRouteSignature {
 
     <nav>
       <ul>
-        <li><LinkTo @route="index">Home</LinkTo></li>
-        <li><LinkTo @route="alpha">Alpha</LinkTo></li>
-        <li><LinkTo @route="bravo">Bravo</LinkTo></li>
+        <li>
+          <LinkTo @route="index">
+            Home
+          </LinkTo>
+        </li>
+
+        <li>
+          <LinkTo @route="alpha">
+            Alpha
+          </LinkTo>
+        </li>
+
+        <li>
+          <LinkTo @route="bravo">
+            Bravo
+          </LinkTo>
+        </li>
       </ul>
     </nav>
   </header>
@@ -28,7 +42,11 @@ interface ApplicationRouteSignature {
   </main>
 
   <footer>
-    <p><a href="https://github.com/ember-a11y/ember-a11y-refocus">GitHub Repo</a></p>
-    <p><a href="/tests">Tests (for development)</a></p>
+    <p>
+      <a href="https://github.com/ember-a11y/ember-a11y-refocus">GitHub Repo</a>
+    </p>
+    <p>
+      <a href="/tests">Tests (for development)</a>
+    </p>
   </footer>
 </template> satisfies TOC<ApplicationRouteSignature>;
