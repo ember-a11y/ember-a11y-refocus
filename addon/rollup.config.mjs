@@ -1,6 +1,7 @@
 import { Addon } from '@embroider/addon-dev/rollup';
 import { babel } from '@rollup/plugin-babel';
 import copy from 'rollup-plugin-copy';
+import css from 'rollup-plugin-import-css';
 
 const addon = new Addon({
   srcDir: 'src',
@@ -59,7 +60,13 @@ export default {
 
     // addons are allowed to contain imports of .css files, which we want rollup
     // to leave alone and keep in the published output.
-    addon.keepAssets(['**/*.css']),
+    // addon.keepAssets(['**/*.css']),
+
+    css({
+      output: 'styles/navigation-narrator.css',
+      preserveImports: true,
+      minify: true,
+    }),
 
     // Remove leftover build artifacts when starting a new build.
     addon.clean(),

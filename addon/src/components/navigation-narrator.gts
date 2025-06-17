@@ -5,6 +5,7 @@ import { on } from '@ember/modifier';
 import { registerDestructor } from '@ember/destroyable';
 import { schedule, cancel } from '@ember/runloop';
 
+import '../styles/navigation-narrator.css';
 import { defaultValidator } from '../utils/validators.js';
 
 import type RouterService from '@ember/routing/router-service';
@@ -35,7 +36,6 @@ export interface NavigationNarratorSignature {
 
   Element: HTMLElement;
 }
-
 
 /**
  * 🎧 NavigationNarrator
