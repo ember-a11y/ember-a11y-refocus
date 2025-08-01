@@ -18,31 +18,13 @@ Single-Page Applications(SPAs) use `pushState` to allow portions of the page to 
 
 Since `pushState` does nothing to inform the browser--and, by extent, the screen reader--that new content is present, the screen-reader user has no way of knowing that new content exists, or that navigation to a new page was successful. Additionally, focus remains where it was, instead of being reset in a predictable fashion.
 
-## FAQs
-
-### What about async data loading?
-
-Async data can be loaded as it normally would be. Since this addon does not use `aria-live`, it won't interfere with or compete with other loading states. This will only give the user with a screen reader a message that the route (URL) has changed, and place the focus where they expect it to be (reset to the top left of the page).
-
-### What if I want to put focus somewhere specific in the app flow?
-
-Since this will run before other content, focus can be programmatically moved by the developer to go somewhere else. The message should still read out, and is findable by users with screen readers.
-
-Compatibility
-------------------------------------------------------------------------------
-
-* Ember.js v4.12 or above
-* Node.js v18 or above
-
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```bash
 ember install ember-a11y-refocus
 ```
 
-Usage
-------------------------------------------------------------------------------
+## Usage
 
 - Insert `<NavigationNarrator/>` into your application.hbs file, preferably inside of a `<header>` element.
 - Next, add `id="main"` to the primary content element in your application (hopefully a `<main>` element).
@@ -101,7 +83,6 @@ const app = new EmberApp(defaults, {
 @use "navigation-narrator.css";
 ```
 
-
 ### Customizing the definition of a route change
 
 This addon provides support for custom definitions of which route changes should trigger refocusing behavior.
@@ -127,8 +108,8 @@ export default class ApplicationController extends Controller {
 
 The validator function:
 
-* Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
-* Should return `true` if refocusing should occur, otherwise `false`
+- Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
+- Should return `true` if refocusing should occur, otherwise `false`
 
 If you wish to extend the default behavior (rather than completely replacing it), you can import the default validator like so:
 
@@ -147,19 +128,17 @@ If you wish to extend the default behavior (rather than completely replacing it)
  }
  ```
 
-Additional Options
-------------------------------------------------------------------------------
+## Additional Options
 
 All of these are optional and have default values.
 
-* `skipLink` - pass `{{false}}` if you do not want to implement a bypass block/skip link.
-* `skipTo` - pass a specific element ID that should receive focus on skip. Defaults to `#main`.
-* `skipText` - customize the text passed in the skip link. Defaults to `Skip to main content`.
-* `navigationText` - customize the text passed as the navigation message. Defaults to `The page navigation is complete. You may now navigate the page content as you wish`.
-* `excludeAllQueryParams` - pass `{{true}}` if you want to exclude all query params from the route change check/focus management. Really shouldn't do this, but you might be upgrading an older app and need this for a little bit, or you are using QPs in a specific way and would like to otherwise benefit from the accessibility options in this addon. If you only need to exclude _some_ QPs, use the custom validator function instead.
+- `skipLink` - pass `{{false}}` if you do not want to implement a bypass block/skip link.
+- `skipTo` - pass a specific element ID that should receive focus on skip. Defaults to `#main`.
+- `skipText` - customize the text passed in the skip link. Defaults to `Skip to main content`.
+- `navigationText` - customize the text passed as the navigation message. Defaults to `The page navigation is complete. You may now navigate the page content as you wish`.
+- `excludeAllQueryParams` - pass `{{true}}` if you want to exclude all query params from the route change check/focus management. Really shouldn't do this, but you might be upgrading an older app and need this for a little bit, or you are using QPs in a specific way and would like to otherwise benefit from the accessibility options in this addon. If you only need to exclude _some_ QPs, use the custom validator function instead.
 
-FastBoot
-------------------------------------------------------------------------------
+## FastBoot
 
 With FastBoot, you'll want to guard the `<NavigationNarrator />` from rendering. Like so:
 
@@ -171,12 +150,25 @@ With FastBoot, you'll want to guard the `<NavigationNarrator />` from rendering.
 
 Where `this.fastboot` is the fastboot service injected in the application controller.
 
-Contributing
-------------------------------------------------------------------------------
+## FAQs
+
+### What about async data loading?
+
+Async data can be loaded as it normally would be. Since this addon does not use `aria-live`, it won't interfere with or compete with other loading states. This will only give the user with a screen reader a message that the route (URL) has changed, and place the focus where they expect it to be (reset to the top left of the page).
+
+### What if I want to put focus somewhere specific in the app flow?
+
+Since this will run before other content, focus can be programmatically moved by the developer to go somewhere else. The message should still read out, and is findable by users with screen readers.
+
+## Compatibility
+
+- Ember.js v4.12 or above
+- Node.js v18 or above
+
+## Contributing
 
 Contributions are welcome.
 
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
