@@ -54,34 +54,55 @@ import { NavigationNarrator } from 'ember-a11y-refocus';
 
 Template Registry is available for loose mode users:
 
-```js
+```ts
 import type EmberA11yRefocusRegistry from 'ember-a11y-refocus/template-registry';
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry
-    extends EmberA11yRefocusRegistry{
-  }
+    extends EmberA11yRefocusRegistry {}
 }
 ```
 
-Minimal CSS is provided to style the skip link and navigation message. You can override these styles in your app's CSS.
+Minimal CSS is provided to style the skip link and navigation message.
+
+```diff
+/* app/app.ts */
++ import 'ember-a11y-refocus/styles.css';
++
+import Application from '@ember/application';
+import loadInitializers from 'ember-load-initializers';
+import Resolver from 'ember-resolver';
+
+import config from './config/environment';
+
+export default class App extends Application {
+  modulePrefix = config.modulePrefix;
+  podModulePrefix = config.podModulePrefix;
+  Resolver = Resolver;
+}
+
+loadInitializers(App, config.modulePrefix);
+```
+
+<details>
+
+<summary>Use Sass?</summary>
 
 ```js
 // ember-cli-build.js
 const app = new EmberApp(defaults, {
-  const app = new EmberApp(defaults, {
-      sassOptions: {
-      includePaths: ['node_modules/ember-a11y-refocus/dist/styles'],
-    },
-  });
+  sassOptions: {
+    includePaths: ['node_modules/ember-a11y-refocus/dist/styles'],
+  },
 });
 ```
 
 ```scss
-// app.scss
-
+/* app/styles/app.scss */
 @use "navigation-narrator.css";
 ```
+
+</details>
 
 ### Customizing the definition of a route change
 
