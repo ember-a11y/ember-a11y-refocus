@@ -61,7 +61,7 @@ Example:
 
 Gjs/Gts:
 
-```gts
+```gjs
 import { NavigationNarrator } from 'ember-a11y-refocus';
 
 <template>
