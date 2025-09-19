@@ -1,5 +1,22 @@
 # Changelog
 
+## Release (2025-09-19)
+
+* ember-a11y-refocus 5.1.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-a11y-refocus`
+  * [#415](https://github.com/ember-a11y/ember-a11y-refocus/pull/415) Simplified importing styles ([@ijlee2](https://github.com/ijlee2))
+
+#### :memo: Documentation
+* [#416](https://github.com/ember-a11y/ember-a11y-refocus/pull/416) allow github code highlighting for gjs example ([@mansona](https://github.com/mansona))
+* [#407](https://github.com/ember-a11y/ember-a11y-refocus/pull/407) Update README.md ([@MelSumner](https://github.com/MelSumner))
+
+#### Committers: 3
+- Chris Manson ([@mansona](https://github.com/mansona))
+- Isaac Lee ([@ijlee2](https://github.com/ijlee2))
+- Melanie Sumner ([@MelSumner](https://github.com/MelSumner))
+
 ## Release (2025-06-13)
 
 * ember-a11y-refocus 5.0.0 (major)
