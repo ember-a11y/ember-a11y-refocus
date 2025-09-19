@@ -11,5 +11,4 @@ setApplication(Application.create(config.APP));
 setup(QUnit.assert);
 setupEmberOnerrorValidation();
 loadTests();
-
 start();
