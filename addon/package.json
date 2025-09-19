@@ -21,6 +21,7 @@
       "types": "./declarations/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./styles": "./dist/styles/navigation-narrator.css",
     "./*": {
       "types": "./declarations/*.d.ts",
       "default": "./dist/*.js"
