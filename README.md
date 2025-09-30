@@ -51,6 +51,9 @@ import { NavigationNarrator } from 'ember-a11y-refocus';
     <NavigationNarrator/>
     <!-- other header content-->
   </header>
+  <main id="main">
+   <!--main content-->
+  </main>
 </template>
 ```
 
