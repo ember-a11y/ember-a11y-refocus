@@ -47,8 +47,10 @@ Gjs/Gts:
 import { NavigationNarrator } from 'ember-a11y-refocus';
 
 <template>
-  <NavigationNarrator/>
-  <!-- other header content-->
+  <header>
+    <NavigationNarrator/>
+    <!-- other header content-->
+  </header>
 </template>
 ```
 
