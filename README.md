@@ -26,8 +26,8 @@ ember install ember-a11y-refocus
 
 ## Usage
 
-- Insert `<NavigationNarrator/>` into your application.hbs file, preferably inside of a `<header>` element.
-- Next, add `id="main"` to the primary content element in your application (hopefully a `<main>` element).
+- Insert `<NavigationNarrator/>` into your application.hbs file, inside of the `<header>` element.
+- Next, add `id="main"` to the primary content element in your application (should be the `<main>` element).
 
 Example:
 
@@ -42,6 +42,12 @@ Example:
 ```
 
 Gjs/Gts:
+
+- Import the `NavigationNarrator` 
+- Insert `<NavigationNarrator/>` component into your template file, inside of the `<header>` element.
+- Next, add `id="main"` to the primary content element in your application (should be the `<main>` element).
+
+Example:
 
 ```gjs
 import { NavigationNarrator } from 'ember-a11y-refocus';
