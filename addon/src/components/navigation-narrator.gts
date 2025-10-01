@@ -5,6 +5,7 @@ import { on } from '@ember/modifier';
 import { registerDestructor } from '@ember/destroyable';
 import { schedule, cancel } from '@ember/runloop';
 
+import '../styles/navigation-narrator.css';
 import { defaultValidator } from '../utils/validators.js';
 
 import type RouterService from '@ember/routing/router-service';
@@ -14,21 +15,43 @@ import type { Timer } from '@ember/runloop';
 
 export interface NavigationNarratorSignature {
   Args: {
+    /** Whether to include the skip link. Defaults to `true`. */
     skipLink?: boolean;
-    skipTo?: string;
-    skipText?: string;
-    navigationText?: string;
-    routeChangeValidator?: (transition: Transition) => boolean;
-    excludeAllQueryParams?: boolean;
-  };
 
-  Blocks: {
-    default: [];
+    /** CSS selector the skip link jumps to. Defaults to `'#main'`. */
+    skipTo?: string;
+
+    /** Text content of the skip link. Defaults to `'Skip to main content'`. */
+    skipText?: string;
+
+    /** Text announced by a screen reader after navigation. */
+    navigationText?: string;
+
+    /** Custom logic for determining whether a transition should trigger narration. */
+    routeChangeValidator?: (transition: Transition) => boolean;
+
+    /** Whether to ignore query param changes during route comparisons. Defaults to `false`. */
+    excludeAllQueryParams?: boolean;
   };
 
   Element: HTMLElement;
 }
 
+/**
+ * 🎧 NavigationNarrator
+ *
+ * Announces route changes for screen readers using a visually-hidden element,
+ * and optionally renders a "Skip to main content" link.
+ *
+ * Usage:
+ * ```gjs
+ * import { NavigationNarrator } from 'ember-a11y-refocus';
+ *
+ * <template>
+ *   <NavigationNarrator />
+ * </template>
+ * ```
+ */
 export default class NavigationNarrator extends Component<NavigationNarratorSignature> {
   @service declare readonly router: RouterService;
 
@@ -36,85 +59,6 @@ export default class NavigationNarrator extends Component<NavigationNarratorSign
 
   timer: Timer | undefined;
   transition: Transition | undefined;
-
-  /*
-   * @param skipLink
-   * @type {boolean}
-   * @description Whether or not to include the skip link in the page. If you don't want the skip link to be included, you can set this to false.
-   * @default true
-   */
-  get skipLink() {
-    return this.args.skipLink ?? true;
-  }
-
-  /*
-   * @param skipTo
-   * @type {string}
-   * @description Element selector for what the skip link should jump to. A default is provided but this can be customized.
-   * @default '#main'
-   */
-  get skipTo() {
-    return this.args.skipTo ?? '#main';
-  }
-
-  /*
-   * @param skipText
-   * @type {string}
-   * @description text of the bypass block/skip link. Default text is provided but it can be customized.
-   * @default 'Skip to main content'
-   */
-  get skipText() {
-    return this.args.skipText ?? 'Skip to main content';
-  }
-
-  /*
-   * @param navigationText
-   * @type {string}
-   * @description The text to be read by the screen reader when the page navigation is complete. While a default message is provided, it can be customized to better fit the needs of your application.
-   * @default 'The page navigation is complete. You may now navigate the page content as you wish.'
-   */
-  get navigationText() {
-    return (
-      this.args.navigationText ??
-      'The page navigation is complete. You may now navigate the page content as you wish.'
-    );
-  }
-
-  /*
-   * @param routeChangeValidator
-   * @type {function}
-   * @description A function that can be used to provide a custom definition of a route transition. Typically used if you have some query params that you don't want to trigger the route transition (but you would otherwise mostly want it to behave per Ember's default).
-   */
-  get routeChangeValidator() {
-    return this.args.routeChangeValidator ?? defaultValidator;
-  }
-
-  /*
-   * @param excludeAllQueryParams
-   * @type {boolean}
-   * @description Whether or not to include all query params in definition of a route transition. If you want to include/exclude _some_ query params, the routeChangeValidator function should be used instead.
-   * @default false
-   */
-  get excludeAllQueryParams() {
-    return this.args.excludeAllQueryParams ?? false;
-  }
-
-  /*
-   * @param hasQueryParams
-   * @type {boolean}
-   * @description Check for queryParams.
-   * @default false
-   */
-  get hasQueryParams() {
-    if (
-      Object.keys(this.transition?.from?.queryParams || {}).length ||
-      Object.keys(this.transition?.to?.queryParams || {}).length > 0
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   constructor(owner: Owner, args: NavigationNarratorSignature['Args']) {
     super(owner, args);
@@ -127,6 +71,51 @@ export default class NavigationNarrator extends Component<NavigationNarratorSign
       this.timer = undefined;
       this.router.off('routeDidChange', this.onRouteChange);
     });
+  }
+
+  /** Whether to include the skip link. Defaults to `true`. */
+  get skipLink() {
+    return this.args.skipLink ?? true;
+  }
+
+  /** Selector for the skip link target. Defaults to `'#main'`. */
+  get skipTo() {
+    return this.args.skipTo ?? '#main';
+  }
+
+  /** Text for the skip link. Defaults to `'Skip to main content'`. */
+  get skipText() {
+    return this.args.skipText ?? 'Skip to main content';
+  }
+
+  /** Text announced by screen readers after route transition. */
+  get navigationText() {
+    return (
+      this.args.navigationText ??
+      'The page navigation is complete. You may now navigate the page content as you wish.'
+    );
+  }
+
+  /** Validator function for transitions. */
+  get routeChangeValidator() {
+    return this.args.routeChangeValidator ?? defaultValidator;
+  }
+
+  /** Whether to ignore query param changes. Defaults to `false`. */
+  get excludeAllQueryParams() {
+    return this.args.excludeAllQueryParams ?? false;
+  }
+
+  /** Whether the current transition includes query param changes. */
+  get hasQueryParams() {
+    if (
+      Object.keys(this.transition?.from?.queryParams || {}).length ||
+      Object.keys(this.transition?.to?.queryParams || {}).length > 0
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   onRouteChange = (transition: Transition) => {
