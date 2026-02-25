@@ -168,7 +168,7 @@ All of these are optional and have default values.
 - `skipTo` - pass a specific element ID that should receive focus on skip. Defaults to `#main`.
 - `skipText` - customize the text passed in the skip link. Defaults to `Skip to main content`.
 - `navigationText` - customize the text passed as the navigation message. Defaults to `The page navigation is complete. You may now navigate the page content as you wish`.
-- `excludeAllQueryParams` - pass `{{true}}` if you want to exclude all query params from the route change check/focus management. Really shouldn't do this, but you might be upgrading an older app and need this for a little bit, or you are using QPs in a specific way and would like to otherwise benefit from the accessibility options in this addon. If you only need to exclude _some_ QPs, use the custom validator function instead.
+- `excludeAllQueryParams` - pass `{{true}}` if you want to exclude all query params from the route change check/focus management. Really shouldn't do this, but you might be upgrading an older app and need this for a little bit, or you are using QPs in a specific way and would like to otherwise benefit from the accessibility options in this addon. If you only need to exclude _some_ QPs, use the [custom validator function](https://github.com/ember-a11y/ember-a11y-refocus?tab=readme-ov-file#customizing-the-definition-of-a-route-change) instead.
 
 ## FastBoot
 
