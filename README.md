@@ -10,7 +10,7 @@ This addon does three things:
 
 1. it adds a message to the page to let the screen reader user know that the route has changed and regular page navigation can resume (it is similar to [https://github.com/ember-a11y/a11y-announcer](https://github.com/ember-a11y/a11y-announcer) but does not use `aria-live`).
 2. It moves the focus to that message for the screen reader user, effectively resetting focus in Ember apps (similar to how a native web page/site works).
-3. It provides a bypass mechanism so the user can skip to the page's primary content (see https://www.w3.org/TR/WCAG20-TECHS/G1.html). You can opt out of this if you want (see the `Options` section for available options).
+3. It provides a bypass mechanism so the user can skip to the page's primary content (see <https://www.w3.org/TR/WCAG20-TECHS/G1.html>). You can opt out of this if you want (see the `Options` section for available options).
 
 ## Why This Addon is Needed
 
@@ -21,7 +21,13 @@ Since `pushState` does nothing to inform the browser--and, by extent, the screen
 ## Installation
 
 ```bash
-ember install ember-a11y-refocus
+pnpm add ember-a11y-refocus
+```
+
+Or with npm:
+
+```bash
+npm install ember-a11y-refocus
 ```
 
 ## Usage
@@ -78,7 +84,7 @@ Minimal CSS is provided to style the skip link and navigation message.
 
 ```diff
 /* app/app.ts */
-+ import 'ember-a11y-refocus/styles.css';
++ import 'ember-a11y-refocus/styles/navigation-narrator.css';
 +
 import Application from '@ember/application';
 import loadInitializers from 'ember-load-initializers';
@@ -99,6 +105,15 @@ loadInitializers(App, config.modulePrefix);
 
 <summary>Use Sass?</summary>
 
+If your build tool resolves node module paths (e.g. Vite), the full specifier works directly:
+
+```scss
+/* app/styles/app.scss */
+@use "ember-a11y-refocus/styles/navigation-narrator.css";
+```
+
+For classic Ember apps using `ember-cli-sass`, add the path to `includePaths`:
+
 ```js
 // ember-cli-build.js
 const app = new EmberApp(defaults, {
@@ -107,6 +122,8 @@ const app = new EmberApp(defaults, {
   },
 });
 ```
+
+Then import with the short path:
 
 ```scss
 /* app/styles/app.scss */
@@ -195,7 +212,7 @@ Since this will run before other content, focus can be programmatically moved by
 ## Compatibility
 
 - Ember.js v4.12 or above
-- Node.js v18 or above
+- Node.js v22 or above
 
 ## Contributing
 
