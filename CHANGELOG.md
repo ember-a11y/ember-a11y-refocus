@@ -1,5 +1,23 @@
 # Changelog
 
+## Release (2026-02-26)
+
+* ember-a11y-refocus 5.2.1 (patch)
+
+#### :memo: Documentation
+* `ember-a11y-refocus`
+  * [#436](https://github.com/ember-a11y/ember-a11y-refocus/pull/436) Enhance README with clearer addon features and usage ([@MelSumner](https://github.com/MelSumner))
+  * [#432](https://github.com/ember-a11y/ember-a11y-refocus/pull/432) chore: modernize addon to @ember/addon-blueprint flat layout ([@aklkv](https://github.com/aklkv))
+  * [#433](https://github.com/ember-a11y/ember-a11y-refocus/pull/433) Enhance README with custom validator link ([@MelSumner](https://github.com/MelSumner))
+
+#### :house: Internal
+* `ember-a11y-refocus`
+  * [#432](https://github.com/ember-a11y/ember-a11y-refocus/pull/432) chore: modernize addon to @ember/addon-blueprint flat layout ([@aklkv](https://github.com/aklkv))
+
+#### Committers: 2
+- Alexey Kulakov ([@aklkv](https://github.com/aklkv))
+- Melanie Sumner ([@MelSumner](https://github.com/MelSumner))
+
 ## Release (2026-02-19)
 
 * ember-a11y-refocus 5.2.0 (minor)
