@@ -1,14 +1,14 @@
 {
   "solution": {
     "ember-a11y-refocus": {
-      "impact": "minor",
-      "oldVersion": "5.1.0",
-      "newVersion": "5.2.0",
+      "impact": "patch",
+      "oldVersion": "5.2.0",
+      "newVersion": "5.2.1",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
+          "impact": "patch",
+          "reason": "Appears in changelog section :memo: Documentation"
         },
         {
           "impact": "patch",
@@ -18,5 +18,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2026-02-19)\n\n* ember-a11y-refocus 5.2.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-a11y-refocus`\n  * [#412](https://github.com/ember-a11y/ember-a11y-refocus/pull/412) chore: bump packages and convert test-app to strict template tag ([@aklkv](https://github.com/aklkv))\n\n#### :house: Internal\n* `ember-a11y-refocus`\n  * [#412](https://github.com/ember-a11y/ember-a11y-refocus/pull/412) chore: bump packages and convert test-app to strict template tag ([@aklkv](https://github.com/aklkv))\n  * [#425](https://github.com/ember-a11y/ember-a11y-refocus/pull/425) [internal] resolve frozen lockfile ([@MelSumner](https://github.com/MelSumner))\n* Other\n  * [#424](https://github.com/ember-a11y/ember-a11y-refocus/pull/424) [internal] update release-plan ([@MelSumner](https://github.com/MelSumner))\n\n#### Committers: 2\n- Alexey Kulakov ([@aklkv](https://github.com/aklkv))\n- Melanie Sumner ([@MelSumner](https://github.com/MelSumner))\n"
+  "description": "## Release (2026-02-26)\n\n* ember-a11y-refocus 5.2.1 (patch)\n\n#### :memo: Documentation\n* `ember-a11y-refocus`\n  * [#436](https://github.com/ember-a11y/ember-a11y-refocus/pull/436) Enhance README with clearer addon features and usage ([@MelSumner](https://github.com/MelSumner))\n  * [#432](https://github.com/ember-a11y/ember-a11y-refocus/pull/432) chore: modernize addon to @ember/addon-blueprint flat layout ([@aklkv](https://github.com/aklkv))\n  * [#433](https://github.com/ember-a11y/ember-a11y-refocus/pull/433) Enhance README with custom validator link ([@MelSumner](https://github.com/MelSumner))\n\n#### :house: Internal\n* `ember-a11y-refocus`\n  * [#432](https://github.com/ember-a11y/ember-a11y-refocus/pull/432) chore: modernize addon to @ember/addon-blueprint flat layout ([@aklkv](https://github.com/aklkv))\n\n#### Committers: 2\n- Alexey Kulakov ([@aklkv](https://github.com/aklkv))\n- Melanie Sumner ([@MelSumner](https://github.com/MelSumner))\n"
 }
