@@ -6,11 +6,14 @@
 
 ## What This Addon Does
 
-This addon does three things:
+In order to provide a mechanism for Ember applications to meet certain WCAG Success Criteria, this addon does three things:
 
-1. it adds a message to the page to let the screen reader user know that the route has changed and regular page navigation can resume (it is similar to [https://github.com/ember-a11y/a11y-announcer](https://github.com/ember-a11y/a11y-announcer) but does not use `aria-live`).
-2. It moves the focus to that message for the screen reader user, effectively resetting focus in Ember apps (similar to how a native web page/site works).
-3. It provides a bypass mechanism so the user can skip to the page's primary content (see <https://www.w3.org/TR/WCAG20-TECHS/G1.html>). You can opt out of this if you want (see the `Options` section for available options).
+1. Transition message: it adds a message to the page to let the screen reader user know that the route has changed.
+2. Transition focus management: it moves the focus to that message for the screen reader user, effectively resetting focus in Ember apps (similar to how a native web page/site works).
+3. Skip link: It provides a bypass mechanism so the user can skip to the page's primary content (see <https://www.w3.org/TR/WCAG20-TECHS/G1.html>).
+
+There are quite a few options, and many things are customizable.
+Make sure to read the whole README file to fully understand how to use this addon!
 
 ## Why This Addon is Needed
 
@@ -132,12 +135,12 @@ Then import with the short path:
 
 </details>
 
-### Customizing the definition of a route change
+### Feature: Customizing the definition of a route change
 
 This addon provides support for custom definitions of which route changes should trigger refocusing behavior.
 To use this functionality, pass `routeChangeValidator` when you invoke the component, and add your custom action in the appropriate controller (likely the application controller).
 
-So when you add the component to your application.hbs file:
+So when you add the component to your application template:
 
 ```hbs
 <NavigationNarrator @routeChangeValidator={{this.myCustomValidator}} />
@@ -160,7 +163,7 @@ The validator function:
 - Receives a [Transition](https://api.emberjs.com/ember/release/classes/Transition) object containing information about the source and destination routes
 - Should return `true` if refocusing should occur, otherwise `false`
 
-If you wish to extend the default behavior (rather than completely replacing it), you can import the default validator like so:
+**Note:** If you wish to extend the default behavior (rather than completely replacing it), you can import the default validator like so:
 
 ```js
  import Controller from '@ember/controller';
@@ -168,9 +171,9 @@ If you wish to extend the default behavior (rather than completely replacing it)
 
  export default class ApplicationController extends Controller {
    myCustomValidator(transition) {
-     if (transition.from.name === 'special') {
+     if (transition.from.name === 'special') { // this if statement is where you'd put your custom route validation
         return false;
-     } else {
+     } else { // include this to get the defaultValidator as a fallback
         return defaultValidator(transition);
      }
    }
